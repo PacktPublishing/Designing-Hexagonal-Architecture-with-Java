@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteRepositoriesConfiguration">
+    <remote-repository>
+      <option name="id" value="oracle" />
+      <option name="name" value="oracle" />
+      <option name="url" value="http://10.129.178.173:8082/repository/oracle" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="locationmanagement-deps" />
+      <option name="name" value="locationmanagement-deps" />
+      <option name="url" value="http://10.129.178.173:8082/repository/locationmanagement-deps/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="central" />
+      <option name="url" value="http://10.129.178.173:8082/repository/maven-central" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="apache.org" />
+      <option name="name" value="apache.org" />
+      <option name="url" value="http://10.129.178.173:8082/repository/apache.org" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven-central" />
+      <option name="name" value="maven-central" />
+      <option name="url" value="http://10.129.178.173:8082/repository/maven-central" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="locationmanagement-mvn" />
+      <option name="name" value="locationmanagement-mvn" />
+      <option name="url" value="http://10.129.178.173:8082/repository/locationmanagement-mvn/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Maven Central repository" />
+      <option name="url" value="https://repo1.maven.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="oss_commons" />
+      <option name="name" value="oss_commons" />
+      <option name="url" value="http://10.129.178.173:8082/repository/oss_commons/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="jboss.community" />
+      <option name="name" value="JBoss Community repository" />
+      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="jboss.org" />
+      <option name="name" value="jboss.org" />
+      <option name="url" value="http://10.129.178.173:8082/repository/jboss.org" />
+    </remote-repository>
+  </component>
+</project>

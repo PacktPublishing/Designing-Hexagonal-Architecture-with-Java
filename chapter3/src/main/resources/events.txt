@@ -1,0 +1,2 @@
+00:44:06.906367 IP6 casanova.58183 > menuvivofibra.br.domain: 64865+ PTR? 1.0.0.224.in-addr.arpa. (40)
+00:44:06.912775 IP6 menuvivofibra.br.domain > casanova.58183: 64865 1/0/0 PTR all-systems.mcast.net. (75)
