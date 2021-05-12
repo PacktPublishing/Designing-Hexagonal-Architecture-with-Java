@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Hexagonal-Architecture-with-Java-and-Quarkus-fork.iml" filepath="$PROJECT_DIR$/.idea/Hexagonal-Architecture-with-Java-and-Quarkus-fork.iml" />
-      <module fileurl="file://$PROJECT_DIR$/chapter1/chapter1.iml" filepath="$PROJECT_DIR$/chapter1/chapter1.iml" />
-    </modules>
-  </component>
-</project>

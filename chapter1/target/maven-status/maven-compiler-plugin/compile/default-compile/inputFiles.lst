@@ -1,9 +1,0 @@
-/home/m4ndr4ck/IdeaProjects/Hexagonal-Architecture-with-Java-and-Quarkus-fork/chapter1/src/main/java/dev/davivieira/framework/adapters/input/stdin/RouterViewCLIAdapter.java
-/home/m4ndr4ck/IdeaProjects/Hexagonal-Architecture-with-Java-and-Quarkus-fork/chapter1/src/main/java/dev/davivieira/application/ports/input/RouterViewInputPort.java
-/home/m4ndr4ck/IdeaProjects/Hexagonal-Architecture-with-Java-and-Quarkus-fork/chapter1/src/main/java/dev/davivieira/App.java
-/home/m4ndr4ck/IdeaProjects/Hexagonal-Architecture-with-Java-and-Quarkus-fork/chapter1/src/main/java/dev/davivieira/domain/RouterId.java
-/home/m4ndr4ck/IdeaProjects/Hexagonal-Architecture-with-Java-and-Quarkus-fork/chapter1/src/main/java/dev/davivieira/application/ports/output/RouterViewOutputPort.java
-/home/m4ndr4ck/IdeaProjects/Hexagonal-Architecture-with-Java-and-Quarkus-fork/chapter1/src/main/java/dev/davivieira/application/usecases/RouterViewUseCase.java
-/home/m4ndr4ck/IdeaProjects/Hexagonal-Architecture-with-Java-and-Quarkus-fork/chapter1/src/main/java/dev/davivieira/domain/Type.java
-/home/m4ndr4ck/IdeaProjects/Hexagonal-Architecture-with-Java-and-Quarkus-fork/chapter1/src/main/java/dev/davivieira/framework/adapters/output/file/RouterViewFileAdapter.java
-/home/m4ndr4ck/IdeaProjects/Hexagonal-Architecture-with-Java-and-Quarkus-fork/chapter1/src/main/java/dev/davivieira/domain/Router.java
