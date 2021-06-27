@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface RouterViewOutputPort {
 
-    List<Router> fetchRelatedRouters();
+    List<Router> fetchRouters();
 }

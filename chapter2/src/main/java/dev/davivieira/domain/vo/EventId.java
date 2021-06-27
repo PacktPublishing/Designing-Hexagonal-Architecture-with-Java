@@ -1,9 +1,8 @@
 package dev.davivieira.domain.vo;
 
-import dev.davivieira.domain.entity.Event;
-
 public class EventId {
-    private String id;
+
+    private final String id;
 
     private EventId(String id){
         this.id = id;
@@ -11,5 +10,12 @@ public class EventId {
 
     public static EventId of(String id){
         return new EventId(id);
+    }
+
+    @Override
+    public String toString() {
+        return "EventId{" +
+                "id='" + id + '\'' +
+                '}';
     }
 }

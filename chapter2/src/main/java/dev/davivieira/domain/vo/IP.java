@@ -1,8 +1,9 @@
 package dev.davivieira.domain.vo;
 
 public class IP {
-    private String address;
-    private Protocol protocol;
+
+    private final String address;
+    private final Protocol protocol;
 
     private IP(String address){
       if(address == null)
@@ -15,8 +16,11 @@ public class IP {
       }
     }
 
-    public static IP fromAddress(String address){
-        return new IP(address);
+    @Override
+    public String toString() {
+        return "IP{" +
+                "address='" + address + '\'' +
+                ", protocol=" + protocol +
+                '}';
     }
-
 }

@@ -9,5 +9,5 @@ public class App {
         var type = "EDGE";
         System.out.println(cli.obtainRelatedRouters(type));
 
-        }
+    }
 }

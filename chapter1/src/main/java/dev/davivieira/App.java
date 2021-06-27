@@ -6,7 +6,7 @@ public class App {
 
     public static void main(String... args) {
         var cli = new RouterViewCLIAdapter();
-        var type = "EDGE";
+        var type = "CORE";
         System.out.println(cli.obtainRelatedRouters(type));
     }
 }

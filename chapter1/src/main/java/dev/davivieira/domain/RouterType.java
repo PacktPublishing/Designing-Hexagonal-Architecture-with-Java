@@ -1,6 +1,6 @@
 package dev.davivieira.domain;
 
-public enum Type {
+public enum RouterType {
     EDGE,
     CORE;
 }

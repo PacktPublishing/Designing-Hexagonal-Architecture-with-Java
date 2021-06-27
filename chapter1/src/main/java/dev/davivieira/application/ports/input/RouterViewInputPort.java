@@ -3,28 +3,23 @@ package dev.davivieira.application.ports.input;
 import dev.davivieira.application.ports.output.RouterViewOutputPort;
 import dev.davivieira.application.usecases.RouterViewUseCase;
 import dev.davivieira.domain.Router;
-import dev.davivieira.domain.Type;
+
+import static dev.davivieira.domain.Router.retrieveRouter;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 public class RouterViewInputPort implements RouterViewUseCase {
 
     private RouterViewOutputPort routerListOutputPort;
-
-    private Router router;
 
     public RouterViewInputPort(RouterViewOutputPort routerViewOutputPort) {
         this.routerListOutputPort = routerViewOutputPort;
     }
 
     @Override
-    public List<Router> getRelatedRouters(RelatedRoutersCommand relatedRoutersCommand) {
-        var type = relatedRoutersCommand.getType();
-        var routers = routerListOutputPort.fetchRelatedRouters();
-        return fetchRelatedEdgeRouters(type, routers);
-    }
-
-    private List<Router> fetchRelatedEdgeRouters(Type type, List<Router> routers){
-        return router.checkRouter(type, routers);
+    public List<Router> getRouters(Predicate<Router> filter) {
+        var routers = routerListOutputPort.fetchRouters();
+        return Router.retrieveRouter(routers, filter);
     }
 }

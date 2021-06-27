@@ -3,22 +3,31 @@ package dev.davivieira.domain.entity;
 import dev.davivieira.domain.vo.*;
 
 import java.util.List;
-import java.util.UUID;
+import java.util.function.Predicate;
 
 public class Router {
 
-    private final RouterType type;
-    private final RouterId id;
-    private List<IP> address;
+    private final RouterType routerType;
+    private final RouterId routerid;
     private Switch networkSwitch;
 
-    public Router(RouterType type, RouterId id) {
-        this.type = type;
-        this.id = id;
+    public Router(RouterType routerType, RouterId routerid){
+        this.routerType = routerType;
+        this.routerid = routerid;
     }
 
-    public boolean isType(RouterType type){
-        return this.type == type;
+    public static Predicate<Router> filterRouterByType(RouterType routerType){
+        return routerType.equals(RouterType.CORE)
+                ? Router.isCore() :
+                Router.isEdge();
+    }
+
+    public static Predicate<Router> isCore(){
+        return p -> p.getRouterType() == RouterType.CORE;
+    }
+
+    public static Predicate<Router> isEdge(){
+        return p -> p.getRouterType() == RouterType.EDGE;
     }
 
     public void addNetworkToSwitch(Network network){
@@ -33,11 +42,15 @@ public class Router {
         return networkSwitch.getNetworks();
     }
 
+    public RouterType getRouterType(){
+        return routerType;
+    }
+
     @Override
-    public String toString() {
+    public String toString(){
         return "Router{" +
-                "type=" + type +
-                ", id=" + id +
+                "type=" + routerType +
+                ", id=" + routerid +
                 '}';
     }
 }
