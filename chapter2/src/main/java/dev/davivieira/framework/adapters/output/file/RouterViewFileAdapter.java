@@ -5,7 +5,9 @@ import dev.davivieira.domain.entity.Router;
 import dev.davivieira.domain.vo.RouterId;
 import dev.davivieira.domain.vo.RouterType;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -17,14 +19,16 @@ public class RouterViewFileAdapter implements RouterViewOutputPort {
     private static RouterViewFileAdapter instance;
 
     @Override
-    public List<Router> fetchRelatedRouters() {
+    public List<Router> fetchRouters() {
         return readFileAsString();
     }
 
     private static List<Router> readFileAsString() {
         List<Router> routers = new ArrayList<>();
-
-        try (Stream<String> stream = Files.lines(Paths.get(RouterViewFileAdapter.class.getResource("/routers.txt").getPath()))) {
+        try (Stream<String> stream = new BufferedReader(
+                new InputStreamReader(
+                        RouterViewFileAdapter.class.getClassLoader().
+                                getResourceAsStream("routers.txt"))).lines()) {
             stream.forEach(line ->{
                 String[] routerEntry = line.split(";");
                 var id = routerEntry[0];
@@ -32,12 +36,11 @@ public class RouterViewFileAdapter implements RouterViewOutputPort {
                 Router router = new Router(RouterType.valueOf(type),RouterId.withId(id));
                 routers.add(router);
             });
-        } catch (IOException e){
-           e.printStackTrace();
+        } catch (Exception e){
+            e.printStackTrace();
         }
         return routers;
     }
-
 
     private RouterViewFileAdapter() {
     }

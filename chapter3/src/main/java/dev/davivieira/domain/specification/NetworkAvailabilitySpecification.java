@@ -25,7 +25,7 @@ public class NetworkAvailabilitySpecification extends AbstractSpecification<Rout
     private boolean isNetworkAvailable(Router router){
         var availability = true;
         for (Network network : router.retrieveNetworks()) {
-            if(network.getAddress().equals(address) && network.getCidr() == cidr)
+            if(network.getAddress().equals(address) && network.getName().equals(name) && network.getCidr() == cidr)
                 availability = false;
             break;
         }

@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class RouterNetworkCLIAdapter extends RouterNetworkAdapter {
+
     @Override
     protected void setPorts(){
         super.routerNetworkUseCase = new RouterNetworkInputPort(RouterNetworkFileAdapter.getInstance());

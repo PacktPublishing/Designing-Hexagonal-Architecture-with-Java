@@ -5,8 +5,9 @@ import dev.davivieira.domain.specification.shared.AbstractSpecification;
 import dev.davivieira.domain.vo.RouterType;
 
 public class RouterTypeSpecification extends AbstractSpecification<Router> {
+
     @Override
     public boolean isSatisfiedBy(Router router) {
-        return router.isType(RouterType.EDGE);
+        return router.getRouterType().equals(RouterType.EDGE) || router.getRouterType().equals(RouterType.CORE);
     }
 }

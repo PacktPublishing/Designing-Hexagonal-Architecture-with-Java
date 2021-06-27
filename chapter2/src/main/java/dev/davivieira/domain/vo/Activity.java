@@ -2,15 +2,19 @@ package dev.davivieira.domain.vo;
 
 public class Activity {
 
-    private String srcHost;
-    private String dstHost;
+    private final String srcHost;
+    private final String dstHost;
 
     public Activity (String srcHost, String dstHost){
         this.srcHost = srcHost;
         this.dstHost = dstHost;
     }
 
-    public String retrieveSrcHost(){
-        return this.srcHost;
+    @Override
+    public String toString() {
+        return "Activity{" +
+                "srcHost='" + srcHost + '\'' +
+                ", dstHost='" + dstHost + '\'' +
+                '}';
     }
 }

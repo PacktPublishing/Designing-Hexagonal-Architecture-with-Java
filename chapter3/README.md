@@ -12,3 +12,8 @@ mvn clean package
 ```
 java -jar target/chapter3-1.0-SNAPSHOT.jar
 ```
+
+**To test**
+```
+mvn clean test -Dcucumber.features="src/test/resources"
+```

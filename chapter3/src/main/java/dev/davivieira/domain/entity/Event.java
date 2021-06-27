@@ -10,8 +10,7 @@ import dev.davivieira.domain.vo.Protocol;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 
-public class Event implements Comparable<Event> {// attributes and constructor omitted //
-
+public class Event implements Comparable<Event> {
 
     private OffsetDateTime timestamp;
     private EventId id;

@@ -5,7 +5,6 @@ import dev.davivieira.domain.specification.CIDRSpecification;
 import dev.davivieira.domain.specification.NetworkAmountSpecification;
 import dev.davivieira.domain.specification.NetworkAvailabilitySpecification;
 import dev.davivieira.domain.specification.RouterTypeSpecification;
-import dev.davivieira.domain.vo.IP;
 import dev.davivieira.domain.vo.Network;
 
 public class NetworkOperation {
@@ -19,7 +18,7 @@ public class NetworkOperation {
         if(cidrSpec.isSatisfiedBy(network.getCidr()))
             throw new IllegalArgumentException("CIDR is below "+CIDRSpecification.MINIMUM_ALLOWED_CIDR);
 
-        if(availabilitySpec.isSatisfiedBy(router))
+        if(!availabilitySpec.isSatisfiedBy(router))
             throw new IllegalArgumentException("Address already exist");
 
         if(amountSpec.and(routerTypeSpec).isSatisfiedBy(router)) {
