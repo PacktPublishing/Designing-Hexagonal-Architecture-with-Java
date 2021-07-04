@@ -35,12 +35,12 @@ public class DomainTestData{
 
     protected EdgeRouter newEdgeRouter;
 
-    protected Location locationBrazil;
+    protected Location locationA;
 
-    protected Location locationItaly;
+    protected Location locationB;
 
     public void loadData(){
-        this.locationBrazil = Location.builder().
+        this.locationA = Location.builder().
                 address("Av Republica Argentina 3109").
                 city("Curitiba").
                 state("PR").
@@ -49,7 +49,7 @@ public class DomainTestData{
                 latitude(10F).
                 longitude(-10F).
                 build();
-        this.locationItaly = Location.builder().
+        this.locationB = Location.builder().
                 address("Av Republica Argentina 3109").
                 city("Curitiba").
                 state("PR").
@@ -69,7 +69,7 @@ public class DomainTestData{
                 vendor(Vendor.CISCO).
                 model(Model.XYZ0004).
                 ip(IP.fromAddress("20.0.0.100")).
-                location(locationBrazil).
+                location(locationA).
                 switchType(SwitchType.LAYER3).
                 switchNetworks(networks).
                 build();
@@ -79,7 +79,7 @@ public class DomainTestData{
                 vendor(Vendor.CISCO).
                 model(Model.XYZ0002).
                 ip(IP.fromAddress("20.0.0.1")).
-                location(locationBrazil).
+                location(locationA).
                 routerType(RouterType.EDGE).
                 switches(switchesOfEdgeRouter).
                 build();
@@ -89,7 +89,7 @@ public class DomainTestData{
                 vendor(Vendor.HP).
                 model(Model.XYZ0001).
                 ip(IP.fromAddress("10.0.0.1")).
-                location(locationBrazil).
+                location(locationA).
                 routerType(RouterType.CORE).
                 routers(routersOfCoreRouter).
                 build();
@@ -98,7 +98,7 @@ public class DomainTestData{
                 vendor(Vendor.HP).
                 model(Model.XYZ0001).
                 ip(IP.fromAddress("10.1.0.1")).
-                location(locationBrazil).
+                location(locationA).
                 routerType(RouterType.CORE).
                 build();
         this.newEdgeRouter = EdgeRouter.builder().
@@ -106,7 +106,7 @@ public class DomainTestData{
                 vendor(Vendor.CISCO).
                 model(Model.XYZ0002).
                 ip(IP.fromAddress("20.1.0.1")).
-                location(locationBrazil).
+                location(locationA).
                 routerType(RouterType.EDGE).
                 build();
     }
