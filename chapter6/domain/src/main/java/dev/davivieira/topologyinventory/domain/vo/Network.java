@@ -1,39 +1,24 @@
 package dev.davivieira.topologyinventory.domain.vo;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.ToString;
+
+@Builder
+@Getter
+@ToString
 public class Network {
 
-    private IP address;
-    private String name;
-    private int cidr;
+    private IP networkAddress;
+    private String networkName;
+    private int networkCidr;
 
-    public Network(IP address, String name, int cidr){
-        if(cidr <1 || cidr>32){
+    public Network(IP networkAddress, String networkName, int networkCidr){
+        if(networkCidr <1 || networkCidr>32){
             throw new IllegalArgumentException("Invalid CIDR value");
         }
-        this.address = address;
-        this.name = name;
-        this.cidr = cidr;
-
-    }
-
-    public IP getAddress() {
-        return address;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getCidr() {
-        return cidr;
-    }
-
-    @Override
-    public String toString() {
-        return "Network{" +
-                "address=" + address +
-                ", name='" + name + '\'' +
-                ", cidr=" + cidr +
-                '}';
+        this.networkAddress = networkAddress;
+        this.networkName = networkName;
+        this.networkCidr = networkCidr;
     }
 }

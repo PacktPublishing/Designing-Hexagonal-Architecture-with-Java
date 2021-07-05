@@ -1,64 +1,33 @@
 package dev.davivieira.topologyinventory.domain.entity;
 
 import dev.davivieira.topologyinventory.domain.vo.*;
+import lombok.Getter;
 
-import java.util.List;
+import java.util.function.Predicate;
 
-public class Router {
+@Getter
+public abstract class Router extends Equipment {
 
-    private RouterType type;
-    private RouterId id;
-    private Switch networkSwitch;
+    protected final RouterType routerType;
 
-    public Router(){
-
+    public static Predicate<Router> getRouterTypePredicate(RouterType routerType){
+        return r -> r.getRouterType().equals(routerType);
     }
 
-    public Router(RouterType type, RouterId id) {
-        this.type = type;
-        this.id = id;
+    public static Predicate<Router> getVendorPredicate(Vendor vendor){
+        return r -> r.getVendor().equals(vendor);
     }
 
-    public Router(RouterType type, RouterId id, Switch networkSwitch) {
-        this.type = type;
-        this.id = id;
-        this.networkSwitch = networkSwitch;
+    public static Predicate<Router> getModelPredicate(Model model){
+        return r -> r.getModel().equals(model);
     }
 
-    public boolean isType(RouterType type){
-        return this.type == type;
+    public static Predicate<Router> getCountryPredicate(Location location){
+        return p -> p.location.getCountry().equals(location.getCountry());
     }
 
-    public void addNetworkToSwitch(Network network){
-        this.networkSwitch = networkSwitch.addNetwork(network, this);
-    }
-
-    public Network createNetwork(IP address, String name, int cidr){
-        return new Network(address, name, cidr);
-    }
-
-    public List<Network> retrieveNetworks(){
-        return networkSwitch.getNetworks();
-    }
-
-    public RouterType getType() {
-        return type;
-    }
-
-    public RouterId getId() {
-        return id;
-    }
-
-    public Switch getNetworkSwitch() {
-        return networkSwitch;
-    }
-
-    @Override
-    public String toString() {
-        return "Router{" +
-                "type=" + type +
-                ", id=" + id +
-                ", networkSwitch=" + networkSwitch +
-                '}';
+    public Router(Id id, Vendor vendor, Model model, IP ip, Location location, RouterType routerType) {
+        super(id, vendor, model, ip, location);
+        this.routerType = routerType;
     }
 }

@@ -1,34 +1,29 @@
 package dev.davivieira.topologyinventory.domain.vo;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
+
+@Getter
+@ToString
+@EqualsAndHashCode
 public class IP {
 
-    private String address;
+    private String ipAddress;
     private Protocol protocol;
 
-    private IP(String address){
-      if(address == null)
+    public IP(String ipAddress){
+      if(ipAddress == null)
           throw new IllegalArgumentException("Null IP address");
-      this.address = address;
-      if(address.length()<=15) {
+      this.ipAddress = ipAddress;
+      if(ipAddress.length()<=15) {
           this.protocol = Protocol.IPV4;
       } else {
         this.protocol = Protocol.IPV6;
       }
     }
 
-    public static IP fromAddress(String address){
-        return new IP(address);
-    }
-
-    public String getIPAddress() {
-        return address;
-    }
-
-    @Override
-    public String toString() {
-        return "IP{" +
-                "address='" + address + '\'' +
-                ", protocol=" + protocol +
-                '}';
+    public static IP fromAddress(String ipAddress){
+        return new IP(ipAddress);
     }
 }
