@@ -6,10 +6,10 @@ import dev.davivieira.topologyinventory.domain.service.RouterService;
 import dev.davivieira.topologyinventory.domain.service.NetworkService;
 import dev.davivieira.topologyinventory.domain.service.SwitchService;
 import dev.davivieira.topologyinventory.domain.vo.*;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-
-import static junit.framework.TestCase.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class DomainTest extends DomainTestData {
