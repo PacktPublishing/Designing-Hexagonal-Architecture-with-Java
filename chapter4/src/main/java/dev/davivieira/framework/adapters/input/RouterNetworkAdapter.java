@@ -1,8 +1,6 @@
 package dev.davivieira.framework.adapters.input;
 
-import dev.davivieira.application.ports.input.RouterNetworkInputPort;
 import dev.davivieira.application.usecases.RouterNetworkUseCase;
-import dev.davivieira.application.usecases.RouterNetworkUseCase.NetworkToRouterCommand;
 import dev.davivieira.domain.entity.Router;
 import dev.davivieira.domain.vo.IP;
 import dev.davivieira.domain.vo.Network;
@@ -26,8 +24,7 @@ import java.util.Map;
         var network = new Network(IP.fromAddress(params.get("address")),
                 params.get("name"),
                 Integer.valueOf(params.get("cidr")));
-        NetworkToRouterCommand networkToRouterCommand = new NetworkToRouterCommand(routerId, network);
-        return routerNetworkUseCase.addNetworkToRouter(networkToRouterCommand);
+        return routerNetworkUseCase.addNetworkToRouter(routerId, network);
     }
 
     protected abstract void setPorts();

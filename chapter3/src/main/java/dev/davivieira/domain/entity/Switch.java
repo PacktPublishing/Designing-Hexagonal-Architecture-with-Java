@@ -1,19 +1,23 @@
-package dev.davivieira.domain.vo;
+package dev.davivieira.domain.entity;
 
-import dev.davivieira.domain.entity.Router;
+import dev.davivieira.domain.vo.IP;
+import dev.davivieira.domain.vo.Network;
+import dev.davivieira.domain.vo.SwitchId;
+import dev.davivieira.domain.vo.SwitchType;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Switch {
 
-    private SwitchType type;
+    private SwitchType switchType;
+    private SwitchId switchId;
     private List<Network> networks;
     private IP address;
 
-    public Switch (SwitchType type, List<Network> networks, IP address){
-        this.type = type;
+    public Switch (SwitchType switchType, SwitchId switchId, List<Network> networks, IP address){
+        this.switchType = switchType;
+        this.switchId = switchId;
         this.networks = networks;
         this.address = address;
     }
@@ -26,25 +30,18 @@ public class Switch {
         });
 
         newNetworks.add(network);
-        return new Switch(this.type, newNetworks, this.address);
+        return new Switch(this.switchType, this.switchId, newNetworks, this.address);
     }
 
     public List<Network> getNetworks() {
         return networks;
     }
 
-    public SwitchType getType() {
-        return type;
-    }
-
-    public IP getAddress() {
-        return address;
-    }
-
     @Override
     public String toString() {
         return "Switch{" +
-                "type=" + type +
+                "switchType=" + switchType +
+                ", switchId=" + switchId +
                 ", networks=" + networks +
                 ", address=" + address +
                 '}';
