@@ -1,0 +1,113 @@
+{
+	"info": {
+		"_postman_id": "d1050b1b-f8d2-4b71-a02f-1fb38be2fb41",
+		"name": "topology-inventory",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getRouter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {",
+							"  pm.expect(pm.response.code).to.eql(200);",
+							"});",
+							"",
+							"pm.test(\"The response has all properties\", () => {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.switch.networks).to.have.lengthOf(3);",
+							"    pm.expect(responseJson.switch.networks[0].networkName).to.eql('HR');",
+							"    pm.expect(responseJson.switch.networks[1].networkName).to.eql('Marketing');",
+							"    pm.expect(responseJson.switch.networks[2].networkName).to.eql('Engineering');",
+							"}); "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/network/get?routerId=ca23800e-9b5a-11eb-a8b3-0242ac130003",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"network",
+						"get"
+					],
+					"query": [
+						{
+							"key": "routerId",
+							"value": "ca23800e-9b5a-11eb-a8b3-0242ac130003"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addNetwork",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {",
+							"  pm.expect(pm.response.code).to.eql(200);",
+							"});",
+							"",
+							"pm.test(\"The response has all properties\", () => {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.switch.networks).to.have.lengthOf(4);",
+							"    pm.expect(responseJson.switch.networks[3].networkName).to.eql('Finance');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/network/add?routerId=ca23800e-9b5a-11eb-a8b3-0242ac130003&address=40.0.0.0&name=Finance&cidr=8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"network",
+						"add"
+					],
+					"query": [
+						{
+							"key": "routerId",
+							"value": "ca23800e-9b5a-11eb-a8b3-0242ac130003"
+						},
+						{
+							"key": "address",
+							"value": "40.0.0.0"
+						},
+						{
+							"key": "name",
+							"value": "Finance"
+						},
+						{
+							"key": "cidr",
+							"value": "8"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

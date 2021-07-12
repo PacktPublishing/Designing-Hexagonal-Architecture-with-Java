@@ -1,0 +1,47 @@
+<html>
+<head>
+    <title>Topology & Inventory | Get Router</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Topology & Inventory">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/nav.js"></script>
+</head>
+<body>
+<div class="flex-container">
+    <div class="content-container">
+        <div class="center">
+            <img class="logo" src="images/topology_logo.png">
+            <h1 class="neon">Topology & Inventory</h1>
+        </div>
+        <html-include src="includes/menu.html"></html-include>
+        <br>
+        <div class="content-container">
+            <div class="form-container2 neon-white">
+                <div class="text-1">
+                    <div class="container">
+                        <form name="router" onsubmit="return false;">
+                            <div class="row">
+                                <div class="col-75">
+                                    <input type="text" id="routerId" name="routerId" placeholder="Enter the router id">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <input class="submit-btn" id="go-button" type="submit" value="Submit" onclick="getRouter()">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="container" style="padding-top: 15%;
+    width: 100%;
+    text-align: center;">
+</div>
+<script src="js/d3.v3.min.js"></script>
+<script src="js/vtree.js"></script>
+<script src="js/networkTools.js"></script>
+<script src="js/include.js"></script>
+</body>
+</html>

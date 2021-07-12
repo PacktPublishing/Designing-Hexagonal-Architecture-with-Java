@@ -9,20 +9,15 @@ import dev.davivieira.domain.vo.RouterId;
 
 public class RouterNetworkInputPort implements RouterNetworkUseCase {
 
-    RouterNetworkOutputPort routerNetworkOutputPort;
+    private final RouterNetworkOutputPort routerNetworkOutputPort;
 
-    public RouterNetworkInputPort(){
-
+    public RouterNetworkInputPort(RouterNetworkOutputPort routerNetworkOutputPort){
+        this.routerNetworkOutputPort = routerNetworkOutputPort;
     }
 
-        public RouterNetworkInputPort(RouterNetworkOutputPort routerNetworkOutputPort){
-            this.routerNetworkOutputPort = routerNetworkOutputPort;
-        }
-
     @Override
-    public Router addNetworkToRouter(NetworkToRouterCommand networkToRouterCommand) {
-        var router = fetchRouter(networkToRouterCommand.getRouterId());
-        var network = networkToRouterCommand.getNetwork();
+    public Router addNetworkToRouter(RouterId routerId, Network network) {
+        var router = fetchRouter(routerId);
         return createNetwork(router, network);
     }
 
@@ -31,9 +26,8 @@ public class RouterNetworkInputPort implements RouterNetworkUseCase {
     }
 
     private Router createNetwork(Router router, Network network) {
-        var routerWithNewNetwork = NetworkOperation.createNewNetwork(router, network);
-        return persistNetwork(routerWithNewNetwork) ?
-                routerWithNewNetwork:
+        return persistNetwork(router) ?
+                NetworkOperation.createNewNetwork(router, network) :
                 router;
     }
 
