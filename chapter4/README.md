@@ -1,4 +1,4 @@
-# Chapter 5 - The Life Cycle of Driving and Driven Operations
+# Chapter 4 - Creating Adapters to Interact with The Outside World
 Following are the instructions to compile and run the code samples.
 
 You need to run these commands from within the chapter 4 directory:
