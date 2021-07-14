@@ -16,7 +16,7 @@ public class RouterNetworkCLIAdapter extends RouterNetworkAdapter {
 
     @Override
     protected void setPorts(){
-        super.routerNetworkUseCase = new RouterNetworkInputPort(RouterNetworkFileAdapter.getInstance());
+        this.routerNetworkUseCase = new RouterNetworkInputPort(RouterNetworkFileAdapter.getInstance());
     }
 
     @Override
@@ -30,7 +30,6 @@ public class RouterNetworkCLIAdapter extends RouterNetworkAdapter {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-
         return router;
     }
 

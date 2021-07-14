@@ -13,7 +13,6 @@ import java.util.UUID;
 
         public static Router toDomain(RouterData routerData){
             var routerType = RouterType.valueOf(routerData.getRouterType().name());
-
             var routerId = RouterId.withId(routerData.getRouterId().toString());
             var switchId = SwitchId.withId(routerData.getNetworkSwitch().getSwitchId().toString());
             var switchType = SwitchType.valueOf(routerData.getNetworkSwitch().getSwitchType().toString());
@@ -21,22 +20,24 @@ import java.util.UUID;
             var networks =  getNetworksFromData(routerData.getNetworkSwitch().getNetworks());
 
             var networkSwitch = new Switch(switchId, switchType,networks, ip);
-
             return new Router(routerType, routerId, networkSwitch);
         }
 
 
         public static RouterData toH2(Router router){
             var routerTypeData = RouterTypeData.valueOf(router.getType().toString());
-
             var routerId = router.getId().getUUID();
             var switchId = router.getNetworkSwitch().getSwitchId().getUUID();
             var switchTypeData = SwitchTypeData.valueOf(router.getNetworkSwitch().getSwitchType().toString());
             var ipData = IPData.fromAddress(router.getNetworkSwitch().getAddress().getIPAddress());
             var networkDataList = getNetworksFromDomain(router.retrieveNetworks(), routerId);
 
-            var switchData = new SwitchData(routerId, switchId, switchTypeData, networkDataList, ipData);
-
+            var switchData = new SwitchData(
+                    routerId,
+                    switchId,
+                    switchTypeData,
+                    networkDataList,
+                    ipData);
             return new RouterData(routerId, routerTypeData, switchData);
         }
 
@@ -54,11 +55,11 @@ import java.util.UUID;
             return networks;
         }
 
-        private static List<NetworkData>  getNetworksFromDomain(List<Network> networks, UUID routerId){
+        private static List<NetworkData> getNetworksFromDomain(List<Network> networks, UUID switchId){
             List<NetworkData> networkDataList = new ArrayList<>();
-            networks.forEach(network -> {
+            networks.forEach(network ->{
                 var networkData = new NetworkData(
-                        routerId,
+                        switchId,
                         IPData.fromAddress(network.getAddress().getIPAddress()),
                         network.getName(),
                         network.getCidr()

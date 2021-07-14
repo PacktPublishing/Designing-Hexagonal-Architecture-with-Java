@@ -20,7 +20,9 @@ import java.util.UUID;
 public class RouterData implements Serializable {
 
     @Id
-    @Column(name="router_id", columnDefinition = "uuid", updatable = false )
+    @Column(name="router_id",
+            columnDefinition = "uuid",
+            updatable = false )
     @Convert("uuidConverter")
     private UUID routerId;
 
@@ -31,6 +33,8 @@ public class RouterData implements Serializable {
 
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(table = "switches", name = "router_id", referencedColumnName = "router_id")
+    @JoinColumn(table = "switches",
+            name = "router_id",
+            referencedColumnName = "router_id")
     private SwitchData networkSwitch;
 }

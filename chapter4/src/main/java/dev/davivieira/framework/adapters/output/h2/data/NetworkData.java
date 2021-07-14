@@ -30,8 +30,14 @@ public class NetworkData implements Serializable {
 
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride( name = "address", column = @Column(name = "network_address")),
-            @AttributeOverride( name = "protocol", column = @Column(name = "network_protocol")),
+            @AttributeOverride(
+                    name = "address",
+                    column = @Column(
+                            name = "network_address")),
+            @AttributeOverride(
+                    name = "protocol",
+                    column = @Column(
+                            name = "network_protocol")),
     })
     IPData ip;
 
