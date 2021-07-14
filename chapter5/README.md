@@ -16,14 +16,14 @@ You need to run these commands from within the chapter 5 directory:
 mvn clean package
 ```
 
-**To test the REST adapter**
+**To test the REST adapter with WebSocket**
 ```
-java -jar target/chapter4-1.0-SNAPSHOT-jar-with-dependencies.jar rest
+java -jar target/topology-inventory-1.0-SNAPSHOT-jar-with-dependencies.jar rest
 curl -vv "http://localhost:8080/network/add?routerId=ca23800e-9b5a-11eb-a8b3-0242ac130003&address=40.0.0.0&name=Finance&cidr=8"
 ```
 
 **To test the CLI adapter**
 ```
-java -jar target/chapter4-1.0-SNAPSHOT-jar-with-dependencies.jar
+java -jar target/topology-inventory-1.0-SNAPSHOT-jar-with-dependencies.jar
 ```
 To run the front-and application just open the index.html from the web directory.
