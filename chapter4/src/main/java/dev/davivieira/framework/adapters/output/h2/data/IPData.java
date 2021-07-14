@@ -34,5 +34,4 @@ public class IPData {
     public static IPData fromAddress(String address){
         return new IPData(address);
     }
-
 }

@@ -21,7 +21,8 @@ public class RouterNetworkRestAdapter extends RouterNetworkAdapter {
 
     @Override
     protected void setPorts(){
-        this.routerNetworkUseCase = new RouterNetworkInputPort(RouterNetworkH2Adapter.getInstance());
+        this.routerNetworkUseCase = new RouterNetworkInputPort(
+                RouterNetworkH2Adapter.getInstance());
     }
 
     @Override
@@ -42,11 +43,11 @@ public class RouterNetworkRestAdapter extends RouterNetworkAdapter {
                     output.write(routerJson.getBytes());
                     output.flush();
                 } else {
-                    exchange.sendResponseHeaders(405, -1);// 405 Method Not Allowed
+                    exchange.sendResponseHeaders(405, -1);
                 }
                 exchange.close();
             }));
-            httpserver.setExecutor(null); // creates a default executor
+            httpserver.setExecutor(null);
             httpserver.start();
         }
         return router;
@@ -57,7 +58,6 @@ public class RouterNetworkRestAdapter extends RouterNetworkAdapter {
         var requestParams = Pattern.compile("&").splitAsStream(query)
                 .map(s -> Arrays.copyOf(s.split("="), 2))
                 .collect(groupingBy(s -> decode(s[0]), mapping(s -> decode(s[1]), toList())));
-
         var routerId = requestParams.getOrDefault("routerId", List.of(noNameText)).stream().findFirst().orElse(noNameText);
         params.put("routerId",routerId);
         var address = requestParams.getOrDefault("address", List.of(noNameText)).stream().findFirst().orElse(noNameText);

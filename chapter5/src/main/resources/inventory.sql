@@ -1,3 +1,7 @@
+-- noinspection SqlDialectInspectionForFile
+
+-- noinspection SqlNoDataSourceInspectionForFile
+
 CREATE TABLE routers(
                         router_id UUID PRIMARY KEY NOT NULL,
                         router_type VARCHAR(255)

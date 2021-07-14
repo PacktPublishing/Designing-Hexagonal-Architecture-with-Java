@@ -1,40 +1,31 @@
-[
-  {
+[{
     "routerId": "ca23800e-9b5a-11eb-a8b3-0242ac130003",
     "routerType": "EDGE",
     "switch":{
       "switchId": "922dbcd5-d071-41bd-920b-00f83eb4bb46",
       "ip": {
-        "protocol": "IPV4",
-        "address": "9.0.0.9"
+        "protocol": "IPV4", "address": "9.0.0.9"
       },
       "switchType": "LAYER3",
       "networks":[
         {
           "ip": {
-            "protocol": "IPV4",
-            "address": "10.0.0.0"
+            "protocol": "IPV4", "address": "10.0.0.0"
           },
-          "networkName": "HR",
-          "networkCidr": "8"
+          "networkName": "HR", "networkCidr": "8"
         },
         {
           "ip": {
-            "protocol": "IPV4",
-            "address": "20.0.0.0"
+            "protocol": "IPV4", "address": "20.0.0.0"
           },
-          "networkName": "Marketing",
-          "networkCidr": "8"
+          "networkName": "Marketing", "networkCidr": "8"
         },
         {
           "ip": {
-            "protocol": "IPV4",
-            "address": "30.0.0.0"
+            "protocol": "IPV4", "address": "30.0.0.0"
           },
-          "networkName": "Engineering",
-          "networkCidr": "8"
+          "networkName": "Engineering", "networkCidr": "8"
         }
       ]
     }
-  }
-]
+}]

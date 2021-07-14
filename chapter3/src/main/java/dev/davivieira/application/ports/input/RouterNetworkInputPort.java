@@ -26,8 +26,8 @@ public class RouterNetworkInputPort implements RouterNetworkUseCase {
     }
 
     private Router createNetwork(Router router, Network network) {
-        return persistNetwork(router) ?
-                NetworkOperation.createNewNetwork(router, network) :
+        var newRouter = NetworkOperation.createNewNetwork(router, network);
+        return persistNetwork(router) ? newRouter :
                 router;
     }
 
