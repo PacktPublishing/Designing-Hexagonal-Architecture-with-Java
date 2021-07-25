@@ -3,7 +3,6 @@ package dev.davivieira.framework.adapters.input.rest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.HttpServer;
 import dev.davivieira.application.ports.input.RouterNetworkInputPort;
-import dev.davivieira.application.usecases.NotifyEventUseCase;
 import dev.davivieira.domain.entity.Router;
 import dev.davivieira.framework.adapters.input.RouterNetworkAdapter;
 import dev.davivieira.framework.adapters.output.file.mappers.RouterJsonFileMapper;
@@ -12,12 +11,14 @@ import dev.davivieira.framework.adapters.output.kafka.NotifyEventKafkaAdapter;
 
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
-import java.util.*;
+import java.net.URLDecoder;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
-
 import static java.util.stream.Collectors.*;
-import java.net.URLDecoder;
 
 public class RouterNetworkRestAdapter extends RouterNetworkAdapter {
 

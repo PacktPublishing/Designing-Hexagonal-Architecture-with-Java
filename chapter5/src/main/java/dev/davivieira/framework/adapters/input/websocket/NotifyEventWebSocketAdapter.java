@@ -1,13 +1,14 @@
 package dev.davivieira.framework.adapters.input.websocket;
 
+import org.java_websocket.WebSocket;
+import org.java_websocket.handshake.ClientHandshake;
+import org.java_websocket.server.WebSocketServer;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
-import org.java_websocket.WebSocket;
-import org.java_websocket.handshake.ClientHandshake;
-import org.java_websocket.server.WebSocketServer;
 
 public class NotifyEventWebSocketAdapter extends WebSocketServer {
 
@@ -38,17 +39,19 @@ public class NotifyEventWebSocketAdapter extends WebSocketServer {
     }
 
     public static void startServer() throws IOException, InterruptedException {
-        NotifyEventWebSocketAdapter s = new NotifyEventWebSocketAdapter(
+        var ws = new NotifyEventWebSocketAdapter(
                 new InetSocketAddress("localhost", 8887));
-        s.setReuseAddr(true);
-        s.start();
-        System.out.println("Topology & Inventory webSocket started on port: " + s.getPort());
-        BufferedReader sysin = new BufferedReader(new InputStreamReader(System.in));
+        ws.setReuseAddr(true);
+        ws.start();
+        System.out.println("Topology & Inventory" +
+                " webSocket started on port: " + ws.getPort());
+        BufferedReader sysin =
+                new BufferedReader(new InputStreamReader(System.in));
         while (true) {
             String in = sysin.readLine();
-            s.broadcast(in);
+            ws.broadcast(in);
             if (in.equals("exit")) {
-                s.stop();
+                ws.stop();
                 break;
             }
         }

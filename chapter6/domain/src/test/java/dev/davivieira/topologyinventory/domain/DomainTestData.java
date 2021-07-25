@@ -53,7 +53,7 @@ public class DomainTestData{
                 address("Av Republica Argentina 3109").
                 city("Curitiba").
                 state("PR").
-                country("Italy").
+                country("Brazil").
                 zipcode(80610260).
                 latitude(10F).
                 longitude(-10F).

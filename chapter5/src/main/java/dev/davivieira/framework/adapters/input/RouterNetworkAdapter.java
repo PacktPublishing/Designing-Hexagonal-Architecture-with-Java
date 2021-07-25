@@ -7,7 +7,7 @@ import dev.davivieira.domain.vo.Network;
 import dev.davivieira.domain.vo.RouterId;
 import java.util.Map;
 
-    public abstract class RouterNetworkAdapter {
+public abstract class RouterNetworkAdapter {
 
     protected Router router;
 

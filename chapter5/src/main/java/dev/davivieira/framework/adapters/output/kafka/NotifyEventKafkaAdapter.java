@@ -64,10 +64,13 @@ public class NotifyEventKafkaAdapter implements NotifyEventOutputPort {
     @Override
     public void sendEvent(String eventMessage){
         var producer = createProducer();
-        var record = new ProducerRecord<Long, String>(TOPIC_NAME, eventMessage);
+        var record = new ProducerRecord<Long, String>(
+                TOPIC_NAME, eventMessage);
         try {
             var metadata = producer.send(record).get();
-            System.out.println("Event message sent to the topic "+TOPIC_NAME+": "+eventMessage+".");
+            System.out.println("Event message " +
+                    "sent to the topic "+TOPIC_NAME+": "
+                    +eventMessage+".");
             getEvent();
         }catch (Exception e){
             e.printStackTrace();
@@ -95,7 +98,6 @@ public class NotifyEventKafkaAdapter implements NotifyEventOutputPort {
                 System.out.println("Record offset " + record.offset());
                 event.set(record.value());
             });
-            //consumer.commitAsync();
         }
         var eventMessage = event.toString();
         if(sendToWebsocket)

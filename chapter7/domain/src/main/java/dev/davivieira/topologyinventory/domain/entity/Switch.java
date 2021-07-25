@@ -23,10 +23,6 @@ public class Switch extends Equipment {
         this.switchNetworks = switchNetworks;
     }
 
-    public static Predicate<Network> getNetworkProtocolPredicate(Protocol protocol){
-        return s -> s.getNetworkAddress().getProtocol().equals(protocol);
-    }
-
     public static Predicate<Switch> getSwitchTypePredicate(SwitchType switchType){
         return s -> s.switchType .equals(switchType);
     }
