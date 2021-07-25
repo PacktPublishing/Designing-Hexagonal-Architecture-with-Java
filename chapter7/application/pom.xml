@@ -11,15 +11,12 @@
 
     <artifactId>application</artifactId>
 
-    <properties>
-        <cucumber.version>6.10.4</cucumber.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>dev.davivieira</groupId>
             <artifactId>domain</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -30,6 +27,12 @@
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-picocontainer</artifactId>
             <version>${cucumber.version}</version>
             <scope>test</scope>
         </dependency>

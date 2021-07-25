@@ -22,6 +22,7 @@
         <testcontainers.version>1.15.3</testcontainers.version>
         <junit-jupiter.version>5.7.2</junit-jupiter.version>
         <mockito.version>3.10.0</mockito.version>
+        <cucumber.version>6.10.4</cucumber.version>
     </properties>
 
     <dependencies>
@@ -71,16 +72,6 @@
                             <mainClass>dev.davivieira.App</mainClass>
                         </manifest>
                     </archive>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.1</version>
-                <configuration>
-                    <argLine>
-                        --illegal-access=permit
-                    </argLine>
                 </configuration>
             </plugin>
             <plugin>

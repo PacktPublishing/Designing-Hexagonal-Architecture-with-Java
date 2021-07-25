@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Getter
@@ -18,10 +19,10 @@ public class CoreRouter extends Router{
     @Builder
     public CoreRouter(Id id, Vendor vendor, Model model, IP ip, Location location, RouterType routerType,  Map<Id, Router> routers) {
         super(id, vendor, model, ip, location, routerType);
-        this.routers = routers;
+        this.routers = routers == null ? new HashMap<Id, Router>() : routers;
     }
 
-    public Router addRouter(Router anyRouter){
+    public CoreRouter addRouter(Router anyRouter){
         var sameCountryRouterSpec = new SameCountrySpec(this);
         var sameIpSpec = new SameIpSpec(this);
 
@@ -31,7 +32,8 @@ public class CoreRouter extends Router{
         if(!sameIpSpec.isSatisfiedBy(anyRouter)){
             throw new UnsupportedOperationException("It's not possible to attach routers with the same IP");
         }
-        return this.routers.put(anyRouter.id, anyRouter);
+        this.routers.put(anyRouter.id, anyRouter);
+        return this;
     }
 
     public Router removeRouter(Router anyRouter){
@@ -44,6 +46,7 @@ public class CoreRouter extends Router{
                 if (!emptyRoutersSpec.isSatisfiedBy(coreRouter)){
                     throw new UnsupportedOperationException("It isn't allowed to remove a core router with other routers attached to it");
                 }
+                break;
             case EDGE:
                 var edgeRouter = (EdgeRouter)anyRouter;
                 if (!emptySwitchSpec.isSatisfiedBy(edgeRouter)) {
