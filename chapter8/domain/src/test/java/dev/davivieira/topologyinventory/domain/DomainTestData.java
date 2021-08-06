@@ -65,7 +65,7 @@ public class DomainTestData{
                 build();
         this.networks.add(network);
         this.networkSwitch = Switch.builder().
-                id(Id.withId("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3490")).
+                switchId(Id.withId("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3490")).
                 vendor(Vendor.CISCO).
                 model(Model.XYZ0004).
                 ip(IP.fromAddress("20.0.0.100")).

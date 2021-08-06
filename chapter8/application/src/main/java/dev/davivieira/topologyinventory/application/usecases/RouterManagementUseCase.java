@@ -14,11 +14,13 @@ public interface RouterManagementUseCase {
             Location location,
             RouterType routerType);
 
+    Router removeRouter(Id id);
+
     Router retrieveRouter(Id id);
 
     Router persistRouter(Router router);
 
-    CoreRouter addRouterToCoreRouter(
+    Router addRouterToCoreRouter(
             Router router, CoreRouter coreRouter);
 
     Router removeRouterFromCoreRouter(

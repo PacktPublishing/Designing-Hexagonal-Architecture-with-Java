@@ -17,7 +17,7 @@ public class SwitchAdd extends ApplicationTestData {
     @Given("I provide a switch")
     public void i_provide_a_switch(){
         networkSwitch = Switch.builder().
-                id(Id.withId("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3490")).
+                switchId(Id.withId("f8c3de3d-1fea-4d7c-a8b0-29f63c4c3490")).
                 vendor(Vendor.CISCO).
                 model(Model.XYZ0004).
                 ip(IP.fromAddress("20.0.0.100")).

@@ -14,6 +14,8 @@ public interface SwitchManagementUseCase {
             SwitchType switchType
             );
 
+    Switch retrieveSwitch(Id id);
+
     EdgeRouter addSwitchToEdgeRouter(Switch networkSwitch, EdgeRouter edgeRouter);
 
     EdgeRouter removeSwitchFromEdgeRouter(Switch networkSwitch, EdgeRouter edgeRouter);
