@@ -1,11 +1,7 @@
 package dev.davivieira.topologyinventory.framework.adapters.input.generic;
 
-import dev.davivieira.topologyinventory.application.ports.input.NetworkManagementInputPort;
 import dev.davivieira.topologyinventory.application.ports.input.RouterManagementInputPort;
-import dev.davivieira.topologyinventory.application.ports.input.SwitchManagementInputPort;
-import dev.davivieira.topologyinventory.application.usecases.NetworkManagementUseCase;
 import dev.davivieira.topologyinventory.application.usecases.RouterManagementUseCase;
-import dev.davivieira.topologyinventory.application.usecases.SwitchManagementUseCase;
 import dev.davivieira.topologyinventory.domain.entity.CoreRouter;
 import dev.davivieira.topologyinventory.domain.entity.Router;
 import dev.davivieira.topologyinventory.domain.vo.*;
@@ -13,9 +9,7 @@ import dev.davivieira.topologyinventory.framework.adapters.output.h2.RouterManag
 
 public class RouterManagementGenericAdapter {
 
-    public RouterManagementUseCase routerManagementUseCase;
-    public SwitchManagementUseCase switchManagementUseCase;
-    public NetworkManagementUseCase networkManagementUseCase;
+    private RouterManagementUseCase routerManagementUseCase;
 
     public RouterManagementGenericAdapter(){
         setPorts();
@@ -25,31 +19,46 @@ public class RouterManagementGenericAdapter {
         this.routerManagementUseCase = new RouterManagementInputPort(
                 RouterManagementH2Adapter.getInstance()
         );
-        this.switchManagementUseCase = new SwitchManagementInputPort();
-        this.networkManagementUseCase = new NetworkManagementInputPort();
     }
 
+    /** (/router/retrieve/{id}) **/
     public Router retrieveRouter(Id id){
         return routerManagementUseCase.retrieveRouter(id);
     }
 
+    /** (/router/retrieve/{id}) **/
+    public Router removeRouter(Id id){
+        return routerManagementUseCase.removeRouter(id);
+    }
+
+    /** (/router/create) **/
     public Router createRouter(Vendor vendor,
                                    Model model,
                                    IP ip,
                                    Location location,
                                    RouterType routerType){
-        return routerManagementUseCase.createRouter(
+        var router = routerManagementUseCase.createRouter(
                 null,
                 vendor,
                 model,
                 ip,
                 location,
                 routerType
+
         );
+        return routerManagementUseCase.persistRouter(router);
     }
 
+    /** (/router/add) **/
     public Router addRouterToCoreRouter(Router router, CoreRouter coreRouter){
-        return this.routerManagementUseCase.
+        return routerManagementUseCase.
                 addRouterToCoreRouter(router, coreRouter);
+    }
+
+    public Router removeRouterFromCoreRouter(Id routerId, Id coreRouterId){
+        Router router = routerManagementUseCase.retrieveRouter(routerId);
+        CoreRouter coreRouter = (CoreRouter) routerManagementUseCase.retrieveRouter(coreRouterId);
+        return routerManagementUseCase.
+                removeRouterFromCoreRouter(router, coreRouter);
     }
 }

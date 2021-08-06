@@ -53,7 +53,8 @@ public class RouterH2Mapper {
 
     public static Switch switchDataToDomain(SwitchData switchData) {
         return Switch.builder().
-                id(Id.withId(switchData.getSwitchId().toString())).
+                switchId(Id.withId(switchData.getSwitchId().toString())).
+                routerId(Id.withId(switchData.getRouterId().toString())).
                 vendor(Vendor.valueOf(switchData.getSwitchVendor().toString())).
                 model(Model.valueOf(switchData.getSwitchModel().toString())).
                 ip(IP.fromAddress(switchData.getIp().getAddress())).
@@ -66,6 +67,7 @@ public class RouterH2Mapper {
     public static SwitchData switchDomainToData(Switch aSwitch){
         return  SwitchData.builder().
                 switchId(aSwitch.getId().getUuid()).
+                routerId(aSwitch.getRouterId().getUuid()).
                 switchVendor(VendorData.valueOf(aSwitch.getVendor().toString())).
                 switchModel(ModelData.valueOf(aSwitch.getModel().toString())).
                 ip(IPData.fromAddress(aSwitch.getIp().getIpAddress())).
@@ -130,9 +132,11 @@ public class RouterH2Mapper {
 
     private static List<SwitchData>  getSwitchesFromDomain(Map<Id, Switch> switches){
         List<SwitchData> switchDataList = new ArrayList<>();
-        switches.values().stream().forEach(aSwitch -> {
-            switchDataList.add(switchDomainToData(aSwitch));
-        });
+        if(switches!=null) {
+            switches.values().stream().forEach(aSwitch -> {
+                switchDataList.add(switchDomainToData(aSwitch));
+            });
+        }
         return switchDataList;
     }
 
@@ -150,15 +154,17 @@ public class RouterH2Mapper {
 
     private static List<NetworkData>  getNetworksFromDomain(List<Network> networks, UUID routerId){
         List<NetworkData> networkDataList = new ArrayList<>();
-        networks.forEach(network -> {
-            var networkData = new NetworkData(
-                    routerId,
-                    IPData.fromAddress(network.getNetworkAddress().getIpAddress()),
-                    network.getNetworkName(),
-                    network.getNetworkCidr()
-            );
-            networkDataList.add(networkData);
-        });
+        if(networks!=null) {
+            networks.forEach(network -> {
+                var networkData = new NetworkData(
+                        routerId,
+                        IPData.fromAddress(network.getNetworkAddress().getIpAddress()),
+                        network.getNetworkName(),
+                        network.getNetworkCidr()
+                );
+                networkDataList.add(networkData);
+            });
+        }
         return networkDataList;
     }
 

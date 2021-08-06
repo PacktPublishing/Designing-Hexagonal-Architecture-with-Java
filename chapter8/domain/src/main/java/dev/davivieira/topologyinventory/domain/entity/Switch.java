@@ -6,6 +6,7 @@ import dev.davivieira.topologyinventory.domain.specification.NetworkAvailability
 import dev.davivieira.topologyinventory.domain.vo.*;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.util.List;
@@ -17,12 +18,15 @@ public class Switch extends Equipment {
 
     private SwitchType switchType;
     private List<Network> switchNetworks;
+    @Setter
+    private Id routerId;
 
     @Builder
-    public Switch(Id id, Vendor vendor, Model model, IP ip, Location location, SwitchType switchType, List<Network> switchNetworks){
-        super(id, vendor, model, ip, location);
+    public Switch(Id switchId, Id routerId, Vendor vendor, Model model, IP ip, Location location, SwitchType switchType, List<Network> switchNetworks){
+        super(switchId, vendor, model, ip, location);
         this.switchType = switchType;
         this.switchNetworks = switchNetworks;
+        this.routerId = routerId;
     }
 
     public static Predicate<Switch> getSwitchTypePredicate(SwitchType switchType){

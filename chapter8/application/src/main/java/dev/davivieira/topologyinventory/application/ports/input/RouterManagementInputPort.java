@@ -34,21 +34,29 @@ public class RouterManagementInputPort implements RouterManagementUseCase {
     }
 
     @Override
+    public Router removeRouter(Id id) {
+        return routerManagementOutputPort.removeRouter(id);
+    }
+
+    @Override
     public Router retrieveRouter(Id id) {
         return routerManagementOutputPort.retrieveRouter(id);
     }
+
     @Override
     public Router persistRouter(Router router) {
         return routerManagementOutputPort.persistRouter(router);
     }
+
     @Override
     public CoreRouter addRouterToCoreRouter(Router router, CoreRouter coreRouter) {
         var addedRouter = coreRouter.addRouter(router);
-        return addedRouter;
+        return (CoreRouter) persistRouter(addedRouter);
     }
+
     @Override
     public Router removeRouterFromCoreRouter(Router router, CoreRouter coreRouter) {
         var removedRouter = coreRouter.removeRouter(router);
-        return removedRouter;
+        return persistRouter(removedRouter);
     }
 }
