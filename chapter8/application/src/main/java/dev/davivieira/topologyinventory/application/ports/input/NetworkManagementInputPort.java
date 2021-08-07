@@ -4,10 +4,13 @@ import dev.davivieira.topologyinventory.application.ports.output.RouterManagemen
 import dev.davivieira.topologyinventory.application.usecases.NetworkManagementUseCase;
 import dev.davivieira.topologyinventory.domain.entity.EdgeRouter;
 import dev.davivieira.topologyinventory.domain.entity.Switch;
+import dev.davivieira.topologyinventory.domain.service.NetworkService;
 import dev.davivieira.topologyinventory.domain.vo.IP;
 import dev.davivieira.topologyinventory.domain.vo.Id;
 import dev.davivieira.topologyinventory.domain.vo.Network;
 import lombok.NoArgsConstructor;
+
+import java.util.function.Predicate;
 
 @NoArgsConstructor
 public class NetworkManagementInputPort implements NetworkManagementUseCase {
@@ -44,7 +47,7 @@ public class NetworkManagementInputPort implements NetworkManagementUseCase {
     }
 
     @Override
-    public Switch removeNetworkFromSwitch(Network network, Switch networkSwitch) {
+    public Switch removeNetworkFromSwitch(String networkName, Switch networkSwitch) {
         Id routerId = networkSwitch.getRouterId();
         Id switchId = networkSwitch.getId();
         EdgeRouter edgeRouter = (EdgeRouter) routerManagementOutputPort
@@ -52,6 +55,9 @@ public class NetworkManagementInputPort implements NetworkManagementUseCase {
         Switch switchToRemoveNetwork = edgeRouter
                 .getSwitches()
                 .get(switchId);
+        Predicate<Network> networkPredicate = Network.getNetworkNamePredicate(networkName);
+        var network = NetworkService.
+                findNetwork(switchToRemoveNetwork.getSwitchNetworks(), networkPredicate);
         switchToRemoveNetwork.removeNetworkFromSwitch(network);
         routerManagementOutputPort.persistRouter(edgeRouter);
         return switchToRemoveNetwork.removeNetworkFromSwitch(network)
