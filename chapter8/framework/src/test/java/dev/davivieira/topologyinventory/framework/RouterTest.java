@@ -11,7 +11,6 @@ public class RouterTest extends FrameworkTestData {
 
     RouterManagementGenericAdapter routerManagementGenericAdapter;
 
-
     public RouterTest() {
         this.routerManagementGenericAdapter = new RouterManagementGenericAdapter();
         loadData();
@@ -21,8 +20,8 @@ public class RouterTest extends FrameworkTestData {
     public void retrieveRouter() {
         var id = Id.withId("b832ef4f-f894-4194-8feb-a99c2cd4be0c");
         var actualId = routerManagementGenericAdapter.
-                retrieveRouter(id).getId().getUuid();
-        assertEquals(id.getUuid(), actualId);
+                retrieveRouter(id).getId();
+        assertEquals(id, actualId);
     }
 
     @Test
@@ -39,20 +38,21 @@ public class RouterTest extends FrameworkTestData {
     }
 
     @Test
-    public void createAndAddRouter() {
-        var id = Id.withId("b832ef4f-f894-4194-8feb-a99c2cd4be0c");
-        var coreRouter = (CoreRouter)this.
-                routerManagementGenericAdapter.retrieveRouter(id);
-        var edgeRouter = this.
-                routerManagementGenericAdapter.createRouter(
-                Vendor.DLINK,
-                Model.XYZ0001,
-                IP.fromAddress("40.0.0.1"),
-                locationA,
-                RouterType.EDGE
-        );
-        var actualRouter = (CoreRouter)this.routerManagementGenericAdapter.addRouterToCoreRouter(edgeRouter,coreRouter);
-        assertEquals(edgeRouter, actualRouter.getRouters().get(edgeRouter.getId()));
+    public void addRouterToCoreRouter() {
+        var routerId = Id.withId("b832ef4f-f894-4194-8feb-a99c2cd4be0b");
+        var coreRouterId = Id.withId("b832ef4f-f894-4194-8feb-a99c2cd4be0c");
+        var actualRouter = (CoreRouter)this.routerManagementGenericAdapter.
+               addRouterToCoreRouter(routerId,coreRouterId);
+        assertEquals(routerId, actualRouter.getRouters().get(routerId).getId());
+    }
+
+    @Test
+    public void removeRouterFromCoreRouter(){
+        var routerId = Id.withId("b832ef4f-f894-4194-8feb-a99c2cd4be0a");
+        var coreRouterId = Id.withId("b832ef4f-f894-4194-8feb-a99c2cd4be0c");
+        var removedRouter = this.routerManagementGenericAdapter.
+                removeRouterFromCoreRouter(routerId, coreRouterId);
+        assertEquals(routerId, removedRouter.getId());
     }
 
     @Test
@@ -60,12 +60,5 @@ public class RouterTest extends FrameworkTestData {
         var routerId = Id.withId("b832ef4f-f894-4194-8feb-a99c2cd4be0b");
         var router = this.routerManagementGenericAdapter.removeRouter(routerId);
         assertEquals(null, router);
-    }
-
-    @Test
-    public void removeRouterFromCoreRouter(){
-        var routerId = Id.withId("b832ef4f-f894-4194-8feb-a99c2cd4be0a");
-        var coreRouterId = Id.withId("b832ef4f-f894-4194-8feb-a99c2cd4be0c");
-        this.routerManagementGenericAdapter.removeRouterFromCoreRouter(routerId, coreRouterId);
     }
 }

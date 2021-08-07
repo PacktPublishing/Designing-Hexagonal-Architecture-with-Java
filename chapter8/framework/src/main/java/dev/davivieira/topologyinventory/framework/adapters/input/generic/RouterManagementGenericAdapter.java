@@ -21,17 +21,23 @@ public class RouterManagementGenericAdapter {
         );
     }
 
-    /** (/router/retrieve/{id}) **/
+    /**
+     * GET /router/retrieve/{id}
+     * */
     public Router retrieveRouter(Id id){
         return routerManagementUseCase.retrieveRouter(id);
     }
 
-    /** (/router/retrieve/{id}) **/
+    /**
+     * GET /router/remove/{id}
+     * */
     public Router removeRouter(Id id){
         return routerManagementUseCase.removeRouter(id);
     }
 
-    /** (/router/create) **/
+    /**
+     * POST /router/create
+     * */
     public Router createRouter(Vendor vendor,
                                    Model model,
                                    IP ip,
@@ -49,12 +55,19 @@ public class RouterManagementGenericAdapter {
         return routerManagementUseCase.persistRouter(router);
     }
 
-    /** (/router/add) **/
-    public Router addRouterToCoreRouter(Router router, CoreRouter coreRouter){
+    /**
+     * POST /router/add
+     * */
+    public Router addRouterToCoreRouter(Id routerId, Id coreRouterId){
+        Router router = routerManagementUseCase.retrieveRouter(routerId);
+        CoreRouter coreRouter = (CoreRouter) routerManagementUseCase.retrieveRouter(coreRouterId);
         return routerManagementUseCase.
                 addRouterToCoreRouter(router, coreRouter);
     }
 
+    /**
+     * POST /router/remove
+     * */
     public Router removeRouterFromCoreRouter(Id routerId, Id coreRouterId){
         Router router = routerManagementUseCase.retrieveRouter(routerId);
         CoreRouter coreRouter = (CoreRouter) routerManagementUseCase.retrieveRouter(coreRouterId);

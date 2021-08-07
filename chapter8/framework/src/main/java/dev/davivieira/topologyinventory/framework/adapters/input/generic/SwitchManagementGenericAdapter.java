@@ -29,6 +29,16 @@ public class SwitchManagementGenericAdapter {
         );
     }
 
+    /**
+     * GET /switch/retrieve/{id}
+     * */
+    public Switch retrieveSwitch(Id switchId) {
+        return switchManagementUseCase.retrieveSwitch(switchId);
+    }
+
+    /**
+     * POST /switch/create
+     * */
     public EdgeRouter createAndAddSwitchToEdgeRouter(
             Vendor vendor,
             Model model,
@@ -45,6 +55,9 @@ public class SwitchManagementGenericAdapter {
         return (EdgeRouter) routerManagementUseCase.persistRouter(router);
     }
 
+    /**
+     * POST /switch/remove
+     * */
     public EdgeRouter removeSwitchFromEdgeRouter(Id switchId, Id edgeRouterId) {
         EdgeRouter edgeRouter = (EdgeRouter) routerManagementUseCase
                 .retrieveRouter(edgeRouterId);
@@ -52,9 +65,5 @@ public class SwitchManagementGenericAdapter {
         Router router = switchManagementUseCase
                 .removeSwitchFromEdgeRouter(networkSwitch, edgeRouter);
         return (EdgeRouter) routerManagementUseCase.persistRouter(router);
-    }
-
-    public Switch retrieveSwitch(Id switchId) {
-        return switchManagementUseCase.retrieveSwitch(switchId);
     }
 }

@@ -93,11 +93,11 @@ public class DomainTest extends DomainTestData {
 
         var actualVendor = RouterService.filterAndRetrieveRouter(routers,
                 Router.getVendorPredicate(Vendor.HP)).get(0).getVendor();
-        assertEquals(actualVendor, Vendor.HP);
+        assertEquals(Vendor.HP, actualVendor);
 
         actualVendor = RouterService.filterAndRetrieveRouter(routers,
                 Router.getVendorPredicate(Vendor.CISCO)).get(0).getVendor();
-        assertEquals(actualVendor, Vendor.CISCO);
+        assertEquals(Vendor.CISCO, actualVendor);
     }
 
     @Test
@@ -106,7 +106,7 @@ public class DomainTest extends DomainTestData {
         routers.add(coreRouter);
         var actualCountry = RouterService.filterAndRetrieveRouter(routers,
                 Router.getCountryPredicate(locationA)).get(0).getLocation().getCountry();
-        assertEquals(actualCountry, locationA.getCountry());
+        assertEquals(locationA.getCountry(), actualCountry);
     }
 
     @Test
@@ -115,7 +115,7 @@ public class DomainTest extends DomainTestData {
         routers.add(coreRouter);
         var actualModel= RouterService.filterAndRetrieveRouter(routers,
                 Router.getModelPredicate(Model.XYZ0001)).get(0).getModel();
-        assertEquals(actualModel, Model.XYZ0001);
+        assertEquals(Model.XYZ0001, actualModel);
     }
 
     @Test
@@ -123,7 +123,7 @@ public class DomainTest extends DomainTestData {
         switches.add(networkSwitch);
         var actualSwitchType = SwitchService.filterAndRetrieveSwitch(switches,
                 Switch.getSwitchTypePredicate(SwitchType.LAYER3)).get(0).getSwitchType();
-        assertEquals(actualSwitchType, SwitchType.LAYER3);
+        assertEquals(SwitchType.LAYER3, actualSwitchType);
     }
 
     @Test
