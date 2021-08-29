@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+    <persistence-unit name="inventory" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>dev.davivieira.topologyinventory.framework.adapters.output.h2.data.RouterData</class>
+        <class>dev.davivieira.topologyinventory.framework.adapters.output.h2.data.SwitchData</class>
+        <class>dev.davivieira.topologyinventory.framework.adapters.output.h2.data.LocationData</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+            <property name="jakarta.persistence.jdbc.driver"
+                      value="org.h2.Driver" />
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:h2:mem:inventory;MODE=MYSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;IGNORECASE=TRUE;INIT=CREATE SCHEMA IF NOT EXISTS inventory\;RUNSCRIPT FROM 'classpath:inventory.sql'" />
+            <property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.H2Platform"/>
+            <property name="eclipselink.ddl-generation.output-mode" value="both" />
+            <property name="eclipselink.logging.level" value="info"/>
+            <property name="javax.persistence.schema-generation.scripts.action" value="drop-and-create" />
+        </properties>
+    </persistence-unit>
+</persistence>
