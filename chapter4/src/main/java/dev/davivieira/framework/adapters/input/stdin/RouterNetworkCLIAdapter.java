@@ -2,21 +2,19 @@ package dev.davivieira.framework.adapters.input.stdin;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.davivieira.application.ports.input.RouterNetworkInputPort;
+import dev.davivieira.application.usecases.RouterNetworkUseCase;
 import dev.davivieira.domain.entity.Router;
-import dev.davivieira.framework.adapters.input.RouterNetworkAdapter;
-import dev.davivieira.framework.adapters.output.file.RouterNetworkFileAdapter;
+import dev.davivieira.framework.adapters.input.RouterManageNetworkAdapter;
 import dev.davivieira.framework.adapters.output.file.mappers.RouterJsonFileMapper;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class RouterNetworkCLIAdapter extends RouterNetworkAdapter {
+public class RouterNetworkCLIAdapter extends RouterManageNetworkAdapter {
 
-    @Override
-    protected void setPorts(){
-        this.routerNetworkUseCase = new RouterNetworkInputPort(RouterNetworkFileAdapter.getInstance());
+    public RouterNetworkCLIAdapter(RouterNetworkUseCase routerNetworkUseCase){
+        this.routerNetworkUseCase = routerNetworkUseCase;
     }
 
     @Override
@@ -49,6 +47,8 @@ public class RouterNetworkCLIAdapter extends RouterNetworkAdapter {
             System.out.println("Please inform the CIDR:");
             var cidr = scanner.nextLine();
             params.put("cidr", cidr);
+        } else {
+            throw new IllegalArgumentException("Request with invalid parameters");
         }
         return params;
     }
