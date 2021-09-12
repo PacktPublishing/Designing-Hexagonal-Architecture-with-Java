@@ -23,6 +23,10 @@ public class NotifyEventKafkaAdapter implements NotifyEventOutputPort {
 
     private static NotifyEventKafkaAdapter instance;
 
+    private static KafkaProducer<Long, String> producer;
+
+    private static KafkaConsumer<Long, String> consumer;
+
     private static String KAFKA_BROKERS = "localhost:9092";
 
     private static String GROUP_ID_CONFIG="consumerGroup1";
@@ -43,6 +47,7 @@ public class NotifyEventKafkaAdapter implements NotifyEventOutputPort {
         props.put(ProducerConfig.CLIENT_ID_CONFIG, CLIENT_ID);
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, LongSerializer.class.getName());
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        props.put(ProducerConfig.MAX_BLOCK_MS_CONFIG, 3000);
         return new KafkaProducer<>(props);
     }
 
@@ -63,7 +68,6 @@ public class NotifyEventKafkaAdapter implements NotifyEventOutputPort {
 
     @Override
     public void sendEvent(String eventMessage){
-        var producer = createProducer();
         var record = new ProducerRecord<Long, String>(
                 TOPIC_NAME, eventMessage);
         try {
@@ -72,14 +76,13 @@ public class NotifyEventKafkaAdapter implements NotifyEventOutputPort {
                     "sent to the topic "+TOPIC_NAME+": "
                     +eventMessage+".");
             getEvent();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Override
     public String getEvent(){
-        Consumer<Long, String> consumer = createConsumer();
         int noMessageToFetch = 0;
         AtomicReference<String> event = new AtomicReference<>("");
         while (true) {
@@ -117,12 +120,13 @@ public class NotifyEventKafkaAdapter implements NotifyEventOutputPort {
         }
     }
 
-    public static NotifyEventKafkaAdapter getInstance(Object sourceInstance){
+    public static NotifyEventKafkaAdapter getInstance(){
         if (instance == null) {
             instance = new NotifyEventKafkaAdapter();
         }
-        if(sourceInstance instanceof RouterNetworkRestAdapter)
-            sendToWebsocket = true;
+        sendToWebsocket = true;
+        producer = (KafkaProducer<Long, String>) createProducer();
+        consumer = (KafkaConsumer<Long, String>) createConsumer();
         return instance;
     }
 }

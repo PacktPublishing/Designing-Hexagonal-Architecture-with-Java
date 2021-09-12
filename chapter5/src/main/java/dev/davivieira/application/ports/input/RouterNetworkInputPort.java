@@ -20,6 +20,10 @@ public class RouterNetworkInputPort implements RouterNetworkUseCase {
         this.notifyEventOutputPort = notifyEventOutputPort;
     }
 
+    public RouterNetworkInputPort(RouterNetworkOutputPort routerNetworkOutputPort){
+        this.routerNetworkOutputPort = routerNetworkOutputPort;
+    }
+
     @Override
     public Router addNetworkToRouter(RouterId routerId, Network network) {
         var router = fetchRouter(routerId);

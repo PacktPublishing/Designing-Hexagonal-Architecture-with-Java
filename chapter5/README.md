@@ -26,4 +26,11 @@ curl -vv "http://localhost:8080/network/add?routerId=ca23800e-9b5a-11eb-a8b3-024
 ```
 java -jar target/topology-inventory-1.0-SNAPSHOT-jar-with-dependencies.jar
 ```
-To run the front-and application just open the index.html from the web directory.
+
+**To run the front-and application** 
+
+Be sure that Kafka is running. Then open the file src/web/index.html in your web browser.
+
+1) Open a separate tab for "Events" link.
+2) Open another tab and click on the "Get Router" link. Search for ca23800e-9b5a-11eb-a8b3-0242ac130003.
+3) A message should appear on the "Events" tab.
