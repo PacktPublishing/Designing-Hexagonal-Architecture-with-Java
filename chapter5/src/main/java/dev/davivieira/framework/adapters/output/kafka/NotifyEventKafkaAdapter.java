@@ -105,7 +105,6 @@ public class NotifyEventKafkaAdapter implements NotifyEventOutputPort {
         var eventMessage = event.toString();
         if(sendToWebsocket)
         sendMessage(eventMessage);
-        consumer.close();
         return eventMessage;
     }
 
