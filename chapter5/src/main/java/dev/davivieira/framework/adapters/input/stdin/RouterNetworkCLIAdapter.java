@@ -2,24 +2,19 @@ package dev.davivieira.framework.adapters.input.stdin;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.davivieira.application.ports.input.RouterNetworkInputPort;
+import dev.davivieira.application.usecases.RouterNetworkUseCase;
 import dev.davivieira.domain.entity.Router;
-import dev.davivieira.framework.adapters.input.RouterNetworkAdapter;
-import dev.davivieira.framework.adapters.output.file.RouterNetworkFileAdapter;
+import dev.davivieira.framework.adapters.input.RouterManageNetworkAdapter;
 import dev.davivieira.framework.adapters.output.file.mappers.RouterJsonFileMapper;
-import dev.davivieira.framework.adapters.output.kafka.NotifyEventKafkaAdapter;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class RouterNetworkCLIAdapter extends RouterNetworkAdapter {
-    @Override
-    protected void setPorts(){
-        super.routerNetworkUseCase = new RouterNetworkInputPort(
-                RouterNetworkFileAdapter.getInstance(),
-                NotifyEventKafkaAdapter.getInstance(this)
-        );
+public class RouterNetworkCLIAdapter extends RouterManageNetworkAdapter {
+    
+    public RouterNetworkCLIAdapter(RouterNetworkUseCase routerNetworkUseCase){
+        this.routerNetworkUseCase = routerNetworkUseCase;
     }
 
     @Override

@@ -7,15 +7,10 @@ import dev.davivieira.domain.vo.Network;
 import dev.davivieira.domain.vo.RouterId;
 import java.util.Map;
 
-public abstract class RouterNetworkAdapter {
+public abstract class RouterManageNetworkAdapter {
 
     protected Router router;
-
     protected RouterNetworkUseCase routerNetworkUseCase;
-
-    public RouterNetworkAdapter(){
-        setPorts();
-    }
 
     public Router addNetworkToRouter(Map<String, String> params){
         var routerId = RouterId.withId(params.get("routerId"));
@@ -29,8 +24,6 @@ public abstract class RouterNetworkAdapter {
         var routerId = RouterId.withId(params.get("routerId"));
         return routerNetworkUseCase.getRouter(routerId);
     }
-
-    protected abstract void setPorts();
 
     public abstract Router processRequest(Object requestParams);
 }

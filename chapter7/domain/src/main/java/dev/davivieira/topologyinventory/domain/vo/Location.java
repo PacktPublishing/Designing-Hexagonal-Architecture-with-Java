@@ -1,6 +1,10 @@
 package dev.davivieira.topologyinventory.domain.vo;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
 @Builder
 @AllArgsConstructor
@@ -12,7 +16,7 @@ public class Location {
     private String address;
     private String city;
     private String state;
-    private int zipcode;
+    private int zipCode;
     private String country;
 
     private float latitude;

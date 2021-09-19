@@ -3,7 +3,14 @@ package dev.davivieira.topologyinventory.domain.entity;
 import dev.davivieira.topologyinventory.domain.specification.CIDRSpecification;
 import dev.davivieira.topologyinventory.domain.specification.NetworkAmountSpec;
 import dev.davivieira.topologyinventory.domain.specification.NetworkAvailabilitySpec;
-import dev.davivieira.topologyinventory.domain.vo.*;
+import dev.davivieira.topologyinventory.domain.vo.IP;
+import dev.davivieira.topologyinventory.domain.vo.Id;
+import dev.davivieira.topologyinventory.domain.vo.Location;
+import dev.davivieira.topologyinventory.domain.vo.Model;
+import dev.davivieira.topologyinventory.domain.vo.Network;
+import dev.davivieira.topologyinventory.domain.vo.Protocol;
+import dev.davivieira.topologyinventory.domain.vo.SwitchType;
+import dev.davivieira.topologyinventory.domain.vo.Vendor;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -32,22 +39,14 @@ public class Switch extends Equipment {
     }
 
     public boolean addNetworkToSwitch(Network network) {
-        var availabilitySpec = new NetworkAvailabilitySpec(
-                network.getNetworkAddress(),
-                network.getNetworkName(),
-                network.getNetworkCidr());
+        var availabilitySpec = new NetworkAvailabilitySpec(network);
         var cidrSpec = new CIDRSpecification();
         var amountSpec = new NetworkAmountSpec();
 
-        if(cidrSpec.isSatisfiedBy(network.getNetworkCidr()))
-            throw new IllegalArgumentException("CIDR is below "+CIDRSpecification.MINIMUM_ALLOWED_CIDR);
+        cidrSpec.check(network.getNetworkCidr());
+        availabilitySpec.check(this);
+        amountSpec.check(this);
 
-        if(!availabilitySpec.isSatisfiedBy(this))
-            throw new IllegalArgumentException("This network already exists");
-
-        if(!amountSpec.isSatisfiedBy(this)) {
-            throw new IllegalArgumentException("The max number of networks is "+ NetworkAmountSpec.MAXIMUM_ALLOWED_NETWORKS);
-        }
         return this.switchNetworks.add(network);
     }
 

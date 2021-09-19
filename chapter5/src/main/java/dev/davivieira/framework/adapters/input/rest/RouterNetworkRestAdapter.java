@@ -2,12 +2,10 @@ package dev.davivieira.framework.adapters.input.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.HttpServer;
-import dev.davivieira.application.ports.input.RouterNetworkInputPort;
+import dev.davivieira.application.usecases.RouterNetworkUseCase;
 import dev.davivieira.domain.entity.Router;
-import dev.davivieira.framework.adapters.input.RouterNetworkAdapter;
+import dev.davivieira.framework.adapters.input.RouterManageNetworkAdapter;
 import dev.davivieira.framework.adapters.output.file.mappers.RouterJsonFileMapper;
-import dev.davivieira.framework.adapters.output.h2.RouterNetworkH2Adapter;
-import dev.davivieira.framework.adapters.output.kafka.NotifyEventKafkaAdapter;
 
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
@@ -20,14 +18,10 @@ import java.util.regex.Pattern;
 
 import static java.util.stream.Collectors.*;
 
-public class RouterNetworkRestAdapter extends RouterNetworkAdapter {
+public class RouterNetworkRestAdapter extends RouterManageNetworkAdapter {
 
-    @Override
-    protected void setPorts(){
-        this.routerNetworkUseCase = new RouterNetworkInputPort(
-                RouterNetworkH2Adapter.getInstance(),
-                NotifyEventKafkaAdapter.getInstance(this)
-        );
+    public RouterNetworkRestAdapter(RouterNetworkUseCase routerNetworkUseCase){
+        this.routerNetworkUseCase = routerNetworkUseCase;
     }
 
     @Override
