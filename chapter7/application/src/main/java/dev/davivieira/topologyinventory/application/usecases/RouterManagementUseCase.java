@@ -9,7 +9,6 @@ import dev.davivieira.topologyinventory.domain.vo.Model;
 import dev.davivieira.topologyinventory.domain.vo.RouterType;
 import dev.davivieira.topologyinventory.domain.vo.Vendor;
 
-
 public interface RouterManagementUseCase {
 
     Router createRouter(
