@@ -62,7 +62,7 @@ public class ApplicationTestData {
                 city("Curitiba").
                 state("PR").
                 country("Brazil").
-                zipcode(80610260).
+                zipCode(80610260).
                 latitude(10F).
                 longitude(-10F).
                 build();
@@ -71,7 +71,7 @@ public class ApplicationTestData {
                 city("Curitiba").
                 state("PR").
                 country("Brazil").
-                zipcode(80610260).
+                zipCode(80610260).
                 latitude(10F).
                 longitude(-10F).
                 build();

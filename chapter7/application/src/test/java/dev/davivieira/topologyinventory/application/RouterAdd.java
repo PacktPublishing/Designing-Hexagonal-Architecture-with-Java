@@ -14,6 +14,7 @@ import static dev.davivieira.topologyinventory.domain.vo.RouterType.EDGE;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+
 public class RouterAdd extends ApplicationTestData {
 
     CoreRouter anotherCoreRouter;

@@ -3,7 +3,12 @@ package dev.davivieira.topologyinventory.domain.entity;
 import dev.davivieira.topologyinventory.domain.specification.EmptyNetworkSpec;
 import dev.davivieira.topologyinventory.domain.specification.SameCountrySpec;
 import dev.davivieira.topologyinventory.domain.specification.SameIpSpec;
-import dev.davivieira.topologyinventory.domain.vo.*;
+import dev.davivieira.topologyinventory.domain.vo.IP;
+import dev.davivieira.topologyinventory.domain.vo.Id;
+import dev.davivieira.topologyinventory.domain.vo.Location;
+import dev.davivieira.topologyinventory.domain.vo.Model;
+import dev.davivieira.topologyinventory.domain.vo.RouterType;
+import dev.davivieira.topologyinventory.domain.vo.Vendor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
@@ -22,24 +27,20 @@ public class EdgeRouter extends Router {
         this.switches = switches;
     }
 
-    public void addSwitch(Switch anySwitch){
+    public void addSwitch(Switch anySwitch) {
         var sameCountryRouterSpec = new SameCountrySpec(this);
         var sameIpSpec = new SameIpSpec(this);
 
-        if(!sameCountryRouterSpec.isSatisfiedBy(anySwitch))
-            throw new UnsupportedOperationException("The Switch should be in the same country as the Edge Router");
+        sameCountryRouterSpec.check(anySwitch);
+        sameIpSpec.check(anySwitch);
 
-        if(!sameIpSpec.isSatisfiedBy(anySwitch)){
-            throw new UnsupportedOperationException("It's not possible to add a switch with same router's IP");
-        }
         this.switches.put(anySwitch.id,anySwitch);
     }
 
-    public Switch removeSwitch(Switch anySwitch){
+    public Switch removeSwitch(Switch anySwitch) {
         var emptyNetworkSpec = new EmptyNetworkSpec();
-        if(!emptyNetworkSpec.isSatisfiedBy(anySwitch)){
-            throw new UnsupportedOperationException("It's not possible to remove a switch with networks attached to it");
-        }
+        emptyNetworkSpec.check(anySwitch);
+
         return this.switches.remove(anySwitch.id);
     }
 }

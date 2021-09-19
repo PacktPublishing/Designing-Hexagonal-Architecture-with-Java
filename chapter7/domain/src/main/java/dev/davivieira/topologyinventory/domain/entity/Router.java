@@ -1,6 +1,11 @@
 package dev.davivieira.topologyinventory.domain.entity;
 
-import dev.davivieira.topologyinventory.domain.vo.*;
+import dev.davivieira.topologyinventory.domain.vo.IP;
+import dev.davivieira.topologyinventory.domain.vo.Id;
+import dev.davivieira.topologyinventory.domain.vo.Location;
+import dev.davivieira.topologyinventory.domain.vo.Model;
+import dev.davivieira.topologyinventory.domain.vo.RouterType;
+import dev.davivieira.topologyinventory.domain.vo.Vendor;
 import lombok.Getter;
 
 import java.util.function.Predicate;
@@ -10,19 +15,15 @@ public abstract class Router extends Equipment {
 
     protected final RouterType routerType;
 
-    public static Predicate<Router> getRouterTypePredicate(RouterType routerType){
-        return r -> r.getRouterType().equals(routerType);
+    public static Predicate<Equipment> getRouterTypePredicate(RouterType routerType){
+        return r -> ((Router)r).getRouterType().equals(routerType);
     }
 
-    public static Predicate<Router> getVendorPredicate(Vendor vendor){
-        return r -> r.getVendor().equals(vendor);
-    }
-
-    public static Predicate<Router> getModelPredicate(Model model){
+    public static Predicate<Equipment> getModelPredicate(Model model){
         return r -> r.getModel().equals(model);
     }
 
-    public static Predicate<Router> getCountryPredicate(Location location){
+    public static Predicate<Equipment> getCountryPredicate(Location location){
         return p -> p.location.getCountry().equals(location.getCountry());
     }
 
