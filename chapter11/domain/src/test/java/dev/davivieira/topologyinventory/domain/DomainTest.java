@@ -8,7 +8,15 @@ import dev.davivieira.topologyinventory.domain.exception.GenericSpecificationExc
 import dev.davivieira.topologyinventory.domain.service.RouterService;
 import dev.davivieira.topologyinventory.domain.service.NetworkService;
 import dev.davivieira.topologyinventory.domain.service.SwitchService;
-import dev.davivieira.topologyinventory.domain.vo.*;
+import dev.davivieira.topologyinventory.domain.vo.IP;
+import dev.davivieira.topologyinventory.domain.vo.Id;
+import dev.davivieira.topologyinventory.domain.vo.Location;
+import dev.davivieira.topologyinventory.domain.vo.Model;
+import dev.davivieira.topologyinventory.domain.vo.Network;
+import dev.davivieira.topologyinventory.domain.vo.Protocol;
+import dev.davivieira.topologyinventory.domain.vo.RouterType;
+import dev.davivieira.topologyinventory.domain.vo.SwitchType;
+import dev.davivieira.topologyinventory.domain.vo.Vendor;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -17,7 +25,6 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -271,7 +278,6 @@ public class DomainTest {
                 networkCidr(CIDR).
                 build();
     }
-
 
     private Location createLocation(String country){
         return Location.builder().
