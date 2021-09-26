@@ -1,5 +1,6 @@
 package dev.davivieira.topologyinventory.domain.service;
 
+import dev.davivieira.topologyinventory.domain.entity.Equipment;
 import dev.davivieira.topologyinventory.domain.entity.Router;
 import dev.davivieira.topologyinventory.domain.vo.Id;
 
@@ -10,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class RouterService {
 
-    public static List<Router> filterAndRetrieveRouter(List<Router> routers, Predicate<Router> routerPredicate){
+    public static List<Router> filterAndRetrieveRouter(List<Router> routers, Predicate<Equipment> routerPredicate){
         return routers
                 .stream()
                 .filter(routerPredicate)

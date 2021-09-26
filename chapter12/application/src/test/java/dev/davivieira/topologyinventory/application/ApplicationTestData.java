@@ -1,21 +1,26 @@
-package dev.davivieira.topologyinventory.domain;
+package dev.davivieira.topologyinventory.application;
 
 import dev.davivieira.topologyinventory.domain.entity.CoreRouter;
 import dev.davivieira.topologyinventory.domain.entity.EdgeRouter;
 import dev.davivieira.topologyinventory.domain.entity.Router;
 import dev.davivieira.topologyinventory.domain.entity.Switch;
-import dev.davivieira.topologyinventory.domain.vo.*;
+import dev.davivieira.topologyinventory.domain.vo.IP;
+import dev.davivieira.topologyinventory.domain.vo.Id;
+import dev.davivieira.topologyinventory.domain.vo.Location;
+import dev.davivieira.topologyinventory.domain.vo.Model;
+import dev.davivieira.topologyinventory.domain.vo.Network;
+import dev.davivieira.topologyinventory.domain.vo.RouterType;
+import dev.davivieira.topologyinventory.domain.vo.SwitchType;
+import dev.davivieira.topologyinventory.domain.vo.Vendor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DomainTestData{
+public class ApplicationTestData {
 
-    protected List<Router> routers = new ArrayList<>();
-
-    protected List<Switch> switches = new ArrayList<>();
+    protected Router router;
 
     protected List<Network> networks = new ArrayList<>();
 
@@ -45,7 +50,7 @@ public class DomainTestData{
                 city("Curitiba").
                 state("PR").
                 country("Brazil").
-                zipcode(80610260).
+                zipCode(80610260).
                 latitude(10F).
                 longitude(-10F).
                 build();
@@ -53,8 +58,8 @@ public class DomainTestData{
                 address("Av Republica Argentina 3109").
                 city("Curitiba").
                 state("PR").
-                country("Italy").
-                zipcode(80610260).
+                country("Brazil").
+                zipCode(80610260).
                 latitude(10F).
                 longitude(-10F).
                 build();
@@ -101,6 +106,7 @@ public class DomainTestData{
                 location(locationA).
                 routerType(RouterType.CORE).
                 build();
+        this.coreRouter.addRouter(newCoreRouter);
         this.newEdgeRouter = EdgeRouter.builder().
                 id(Id.withId("ca23800e-9b5a-11eb-a8b3-0242ac130003")).
                 vendor(Vendor.CISCO).

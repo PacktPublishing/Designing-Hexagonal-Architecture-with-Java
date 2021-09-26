@@ -44,7 +44,7 @@ public class FrameworkTestData {
                 city("Tully").
                 state("NY").
                 country("United States").
-                zipcode(13159).
+                zipCode(13159).
                 latitude(42.797310F).
                 longitude(-76.130750F).
                 build();
@@ -53,7 +53,7 @@ public class FrameworkTestData {
                 city("Curitiba").
                 state("PR").
                 country("Italy").
-                zipcode(80610260).
+                zipCode(80610260).
                 latitude(10F).
                 longitude(-10F).
                 build();

@@ -2,6 +2,7 @@ package dev.davivieira.topologyinventory.domain.specification;
 
 import dev.davivieira.topologyinventory.domain.entity.CoreRouter;
 import dev.davivieira.topologyinventory.domain.entity.Equipment;
+import dev.davivieira.topologyinventory.domain.exception.GenericSpecificationException;
 import dev.davivieira.topologyinventory.domain.specification.shared.AbstractSpecification;
 
 public class SameCountrySpec extends AbstractSpecification<Equipment> {
@@ -22,5 +23,11 @@ public class SameCountrySpec extends AbstractSpecification<Equipment> {
         } else{
             return false;
         }
+    }
+
+    @Override
+    public void check(Equipment equipment) throws GenericSpecificationException {
+        if(!isSatisfiedBy(equipment))
+            throw new GenericSpecificationException("The equipments should be in the same country");
     }
 }
