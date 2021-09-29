@@ -21,6 +21,7 @@ import javax.ws.rs.core.Response;
 
 @ApplicationScoped
 @Path("/network")
+@Tag(name = "Network Operations", description = "Network management operations")
 public class NetworkManagementAdapter {
 
     @Inject
@@ -31,7 +32,6 @@ public class NetworkManagementAdapter {
     @POST
     @Path("/add/{switchId}")
     @Operation(operationId = "addNetworkToSwitch", description = "Add network to a switch")
-    @Tag(name = "Add network to a switch")
     public Uni<Response> addNetworkToSwitch(AddNetwork addNetwork, @PathParam("switchId") String switchId) {
         Switch networkSwitch = switchManagementUseCase.retrieveSwitch(Id.withId(switchId));
 
@@ -52,7 +52,6 @@ public class NetworkManagementAdapter {
     @DELETE
     @Path("/remove/{networkName}/from/{switchId}")
     @Operation(operationId = "removeNetworkFromSwitch", description = "Remove network from a switch")
-    @Tag(name = "Remove network from a switch")
     public Uni<Response> removeNetworkFromSwitch(@PathParam("networkName") String networkName, @PathParam("switchId") String switchId) {
         Switch networkSwitch = switchManagementUseCase.retrieveSwitch(Id.withId(switchId));
 

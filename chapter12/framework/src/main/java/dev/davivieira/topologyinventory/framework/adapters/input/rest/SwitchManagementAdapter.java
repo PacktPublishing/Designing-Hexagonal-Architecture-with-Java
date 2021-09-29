@@ -24,6 +24,7 @@ import javax.ws.rs.core.Response;
 
 @ApplicationScoped
 @Path("/switch")
+@Tag(name = "Switch Operations", description = "Operations for switch management")
 public class SwitchManagementAdapter {
 
     @Inject
@@ -34,7 +35,6 @@ public class SwitchManagementAdapter {
     @GET
     @Path("/retrieve/{id}")
     @Operation(operationId = "retrieveSwitch", description = "Retrieve a switch from an edge router")
-    @Tag(name = "Retrieve switch")
     public Uni<Response> retrieveSwitch(@PathParam("id") Id switchId) {
         return Uni.createFrom()
                 .item(switchManagementUseCase.retrieveSwitch(switchId))
@@ -47,7 +47,6 @@ public class SwitchManagementAdapter {
     @POST
     @Path("/create/{edgeRouterId}")
     @Operation(operationId = "createAndAddSwitchToEdgeRouter", description = "Create switch and add to an edge router")
-    @Tag(name = "Create switch and add to an edge router")
     public Uni<Response> createAndAddSwitchToEdgeRouter(
             CreateSwitch createSwitch, @PathParam("edgeRouterId") String edgeRouterId
     ) {
@@ -74,8 +73,8 @@ public class SwitchManagementAdapter {
     @DELETE
     @Path("/remove/{switchId}/from/{edgeRouterId}")
     @Operation(operationId = "removeSwitch", description = "Retrieve a router from the network inventory")
-    @Tag(name = "Remove switch from an edge router")
-    public Uni<Response> removeSwitchFromEdgeRouter(@PathParam("switchId") String switchId, @PathParam("edgeRouterId") String edgeRouterId) {
+    public Uni<Response> removeSwitchFromEdgeRouter(
+            @PathParam("switchId") String switchId, @PathParam("edgeRouterId") String edgeRouterId) {
         EdgeRouter edgeRouter = (EdgeRouter) routerManagementUseCase
                 .retrieveRouter(Id.withId(edgeRouterId));
         Switch networkSwitch = edgeRouter.getSwitches().get(Id.withId(switchId));

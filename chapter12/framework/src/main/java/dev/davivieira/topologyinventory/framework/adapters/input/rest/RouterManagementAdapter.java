@@ -24,6 +24,7 @@ import javax.ws.rs.core.Response;
 
 @ApplicationScoped
 @Path("/router")
+@Tag(name = "Router Operations", description = "Router management operations")
 public class RouterManagementAdapter {
 
     @Inject
@@ -32,7 +33,6 @@ public class RouterManagementAdapter {
     @GET
     @Path("/retrieve/{id}")
     @Operation(operationId = "retrieveRouter", description = "Retrieve a router from the network inventory")
-    @Tag(name = "Retrieve router")
     public Uni<Response> retrieveRouter(@PathParam("id") Id id) {
         return Uni.createFrom()
                 .item(routerManagementUseCase.retrieveRouter(id))
@@ -45,7 +45,6 @@ public class RouterManagementAdapter {
     @DELETE
     @Path("/remove/{id}")
     @Operation(operationId = "removeRouter", description = "Remove a router from the network inventory")
-    @Tag(name = "Remove router")
     public Uni<Response> removeRouter(@PathParam("id") Id id) {
         return Uni.createFrom()
                 .item(routerManagementUseCase.removeRouter(id))
@@ -58,7 +57,6 @@ public class RouterManagementAdapter {
     @POST
     @Path("/create")
     @Operation(operationId = "createRouter", description = "Create and persist a new router on the network inventory")
-    @Tag(name = "Create router")
     public Uni<Response> createRouter(CreateRouter createRouter) {
         var router = routerManagementUseCase.createRouter(
                 null,
@@ -81,7 +79,6 @@ public class RouterManagementAdapter {
     @POST
     @Path("/add")
     @Operation(operationId = "addRouterToCoreRouter", description = "Add a router into a core router")
-    @Tag(name = "Add router to a core router")
     public Uni<Response> addRouterToCoreRouter(AddRouter addRouter) {
         Router router = routerManagementUseCase
                 .retrieveRouter(Id.withId(addRouter.getRouterId()));
@@ -100,7 +97,6 @@ public class RouterManagementAdapter {
     @DELETE
     @Path("/remove/{routerId}/from/{coreRouterId}")
     @Operation(operationId = "removeRouterFromCoreRouter", description = "Remove a router from a core router")
-    @Tag(name = "Remove router from a core router")
     public Uni<Response> removeRouterFromCoreRouter(
             @PathParam("routerId") String routerId, @PathParam("coreRouterId") String coreRouterId) {
         Router router = routerManagementUseCase
