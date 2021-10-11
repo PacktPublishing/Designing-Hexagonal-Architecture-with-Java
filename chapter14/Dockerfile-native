@@ -1,0 +1,8 @@
+FROM registry.access.redhat.com/ubi8/ubi-minimal
+ENV APP_FILE_RUNNER bootstrap-1.0-SNAPSHOT-runner
+ENV APP_HOME /work
+EXPOSE 8080
+COPY bootstrap/target/$APP_FILE_RUNNER $APP_HOME/
+WORKDIR $APP_HOME
+RUN echo $APP_FILE_RUNNER
+CMD ["./bootstrap-1.0-SNAPSHOT-runner", "-Dquarkus.http.host=0.0.0.0"]
