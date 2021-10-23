@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: topology-inventory-mysql
+  labels:
+    app: topology-inventory-mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: topology-inventory-mysql
+  template:
+    metadata:
+      labels:
+        app: topology-inventory-mysql
+    spec:
+      containers:
+        - name: topology-inventory-mysql
+          image: mysql:latest
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "password"
+            - name: MYSQL_DATABASE
+              value: "inventory"
+          ports:
+            - containerPort: 3306
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: topology-inventory-mysql
+  labels:
+    app: topology-inventory-mysql
+spec:
+  ports:
+    - port: 3306
+      protocol: TCP
+  selector:
+    app: topology-inventory-mysql
