@@ -33,7 +33,7 @@ import java.util.UUID;
 
 import static dev.davivieira.topologyinventory.domain.vo.Id.withId;
 
-public class RouterH2Mapper {
+public class RouterMapper {
 
     public static Router routerDataToDomain(RouterData routerData){
         var router = RouterFactory.getRouter(

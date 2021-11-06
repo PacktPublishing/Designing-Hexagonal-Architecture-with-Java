@@ -1,4 +1,4 @@
-package dev.davivieira.topologyinventory.subdomain;
+package dev.davivieira.topologyinventory.status;
 
 import dev.davivieira.topologyinventory.domain.entity.factory.RouterFactory;
 import dev.davivieira.topologyinventory.domain.vo.IP;
