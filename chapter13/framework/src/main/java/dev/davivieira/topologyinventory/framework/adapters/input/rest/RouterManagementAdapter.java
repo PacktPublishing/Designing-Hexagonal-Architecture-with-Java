@@ -31,9 +31,6 @@ public class RouterManagementAdapter {
     @Inject
     RouterManagementUseCase routerManagementUseCase;
 
-    @Inject
-    RouterManagementRepository routerManagementRepository;
-
     @Transactional
     @GET
     @Path("/retrieve/{id}")

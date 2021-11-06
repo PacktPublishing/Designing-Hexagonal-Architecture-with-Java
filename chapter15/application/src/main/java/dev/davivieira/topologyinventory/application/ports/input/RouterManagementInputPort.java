@@ -11,7 +11,7 @@ import dev.davivieira.topologyinventory.domain.vo.Location;
 import dev.davivieira.topologyinventory.domain.vo.Model;
 import dev.davivieira.topologyinventory.domain.vo.RouterType;
 import dev.davivieira.topologyinventory.domain.vo.Vendor;
-import dev.davivieira.topologyinventory.subdomain.RouterInfo;
+import dev.davivieira.topologyinventory.status.RouterInfo;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

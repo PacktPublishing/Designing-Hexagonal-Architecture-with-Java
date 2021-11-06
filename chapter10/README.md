@@ -1,4 +1,4 @@
-# Chapter 10 - Adding Quarkus to a Modularized Hexagonal Application
+    # Chapter 10 - Adding Quarkus to a Modularized Hexagonal Application
 Following are the instructions to compile and run the code samples.
 
 You need to run these commands from within the chapter 10 directory:
