@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.HttpServer;
 import dev.davivieira.application.usecases.RouterNetworkUseCase;
 import dev.davivieira.domain.entity.Router;
-import dev.davivieira.framework.adapters.input.RouterManageNetworkAdapter;
+import dev.davivieira.framework.adapters.input.RouterNetworkAdapter;
 import dev.davivieira.framework.adapters.output.file.mappers.RouterJsonFileMapper;
 
 import java.io.OutputStream;
@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 import static java.util.stream.Collectors.*;
 import java.net.URLDecoder;
 
-public class RouterNetworkRestAdapter extends RouterManageNetworkAdapter {
+public class RouterNetworkRestAdapter extends RouterNetworkAdapter {
 
     public RouterNetworkRestAdapter(RouterNetworkUseCase routerNetworkUseCase){
         this.routerNetworkUseCase = routerNetworkUseCase;
