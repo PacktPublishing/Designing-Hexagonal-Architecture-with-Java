@@ -4,7 +4,7 @@ import com.sun.net.httpserver.HttpServer;
 import dev.davivieira.application.ports.input.RouterNetworkInputPort;
 import dev.davivieira.application.ports.output.RouterNetworkOutputPort;
 import dev.davivieira.application.usecases.RouterNetworkUseCase;
-import dev.davivieira.framework.adapters.input.RouterManageNetworkAdapter;
+import dev.davivieira.framework.adapters.input.RouterNetworkAdapter;
 import dev.davivieira.framework.adapters.input.rest.RouterNetworkRestAdapter;
 import dev.davivieira.framework.adapters.input.stdin.RouterNetworkCLIAdapter;
 import dev.davivieira.framework.adapters.output.file.RouterNetworkFileAdapter;
@@ -16,7 +16,7 @@ import java.util.Scanner;
 
 public class App {
 
-    RouterManageNetworkAdapter inputAdapter;
+    RouterNetworkAdapter inputAdapter;
     RouterNetworkUseCase usecase;
     RouterNetworkOutputPort outputPort;
 
