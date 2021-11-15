@@ -1,1 +1,1 @@
-## Designing Hexagonal Architecture with Java and Quarkus
+## Designing Hexagonal Architecture with Java
