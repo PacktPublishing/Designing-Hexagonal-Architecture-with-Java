@@ -58,7 +58,7 @@ public class NetworkManagementAdapterTest {
                 .pathParam("networkName", networkName)
                 .pathParam("switchId", switchId)
                 .when()
-                .delete("/network/remove/{networkName}/from/{switchId}")
+                .delete("/network/{networkName}/from/{switchId}")
                 .then()
                 .statusCode(200)
                 .extract()

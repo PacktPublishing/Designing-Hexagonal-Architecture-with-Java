@@ -21,21 +21,19 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @ApplicationScoped
 @Path("/router")
 @Tag(name = "Router Operations", description = "Router management operations")
-    public class RouterManagementAdapter {
+public class RouterManagementAdapter {
 
     @Inject
     RouterManagementUseCase routerManagementUseCase;
 
     @Transactional
     @GET
-    @Path("/retrieve/{id}")
+    @Path("/{id}")
     @Operation(operationId = "retrieveRouter", description = "Retrieve a router from the network inventory")
     public Uni<Response> retrieveRouter(@PathParam("id") Id id) {
         return Uni.createFrom()
@@ -48,7 +46,7 @@ import javax.ws.rs.core.Response;
 
     @Transactional
     @DELETE
-    @Path("/remove/{id}")
+    @Path("/{id}")
     @Operation(operationId = "removeRouter", description = "Remove a router from the network inventory")
     public Uni<Response> removeRouter(@PathParam("id") Id id) {
         return Uni.createFrom()
@@ -61,7 +59,7 @@ import javax.ws.rs.core.Response;
 
     @Transactional
     @POST
-    @Path("/create")
+    @Path("/")
     @Operation(operationId = "createRouter", description = "Create and persist a new router on the network inventory")
     public Uni<Response> createRouter(CreateRouter createRouter) {
         var router = routerManagementUseCase.createRouter(
@@ -84,7 +82,7 @@ import javax.ws.rs.core.Response;
 
     @Transactional
     @POST
-    @Path("/add/{routerId}/to/{coreRouterId}")
+    @Path("/{routerId}/to/{coreRouterId}")
     @Operation(operationId = "addRouterToCoreRouter", description = "Add a router into a core router")
     public Uni<Response> addRouterToCoreRouter(
             @PathParam("routerId") String routerId, @PathParam("coreRouterId") String coreRouterId) {
@@ -104,7 +102,7 @@ import javax.ws.rs.core.Response;
 
     @Transactional
     @DELETE
-    @Path("/remove/{routerId}/from/{coreRouterId}")
+    @Path("/{routerId}/from/{coreRouterId}")
     @Operation(operationId = "removeRouterFromCoreRouter", description = "Remove a router from a core router")
     public Uni<Response> removeRouterFromCoreRouter(
             @PathParam("routerId") String routerId, @PathParam("coreRouterId") String coreRouterId) {
@@ -116,20 +114,6 @@ import javax.ws.rs.core.Response;
         return Uni.createFrom()
                 .item(routerManagementUseCase.
                         removeRouterFromCoreRouter(router, coreRouter))
-                .onItem()
-                .transform(f -> f != null ? Response.ok(f) : Response.ok(null))
-                .onItem()
-                .transform(Response.ResponseBuilder::build);
-    }
-
-    @Transactional
-    @GET
-    @Path("/get-router-status")
-    @Operation(operationId = "getRouterStatus", description = "Get router status")
-    @Produces(MediaType.TEXT_PLAIN)
-    public Uni<Response> getRouterStatus() {
-        return Uni.createFrom()
-                .item(routerManagementUseCase.getRouterStatus())
                 .onItem()
                 .transform(f -> f != null ? Response.ok(f) : Response.ok(null))
                 .onItem()

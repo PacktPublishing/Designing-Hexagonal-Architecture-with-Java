@@ -33,7 +33,7 @@ public class RouterManagementAdapter {
 
     @Transactional
     @GET
-    @Path("/retrieve/{id}")
+    @Path("/{id}")
     @Operation(operationId = "retrieveRouter", description = "Retrieve a router from the network inventory")
     public Uni<Response> retrieveRouter(@PathParam("id") Id id) {
         return Uni.createFrom()
@@ -46,7 +46,7 @@ public class RouterManagementAdapter {
 
     @Transactional
     @DELETE
-    @Path("/remove/{id}")
+    @Path("/{id}")
     @Operation(operationId = "removeRouter", description = "Remove a router from the network inventory")
     public Uni<Response> removeRouter(@PathParam("id") Id id) {
         return Uni.createFrom()
@@ -59,7 +59,7 @@ public class RouterManagementAdapter {
 
     @Transactional
     @POST
-    @Path("/create")
+    @Path("/")
     @Operation(operationId = "createRouter", description = "Create and persist a new router on the network inventory")
     public Uni<Response> createRouter(CreateRouter createRouter) {
         var router = routerManagementUseCase.createRouter(
@@ -82,7 +82,7 @@ public class RouterManagementAdapter {
 
     @Transactional
     @POST
-    @Path("/add/{routerId}/to/{coreRouterId}")
+    @Path("/{routerId}/to/{coreRouterId}")
     @Operation(operationId = "addRouterToCoreRouter", description = "Add a router into a core router")
     public Uni<Response> addRouterToCoreRouter(
             @PathParam("routerId") String routerId, @PathParam("coreRouterId") String coreRouterId) {
@@ -102,7 +102,7 @@ public class RouterManagementAdapter {
 
     @Transactional
     @DELETE
-    @Path("/remove/{routerId}/from/{coreRouterId}")
+    @Path("/{routerId}/from/{coreRouterId}")
     @Operation(operationId = "removeRouterFromCoreRouter", description = "Remove a router from a core router")
     public Uni<Response> removeRouterFromCoreRouter(
             @PathParam("routerId") String routerId, @PathParam("coreRouterId") String coreRouterId) {

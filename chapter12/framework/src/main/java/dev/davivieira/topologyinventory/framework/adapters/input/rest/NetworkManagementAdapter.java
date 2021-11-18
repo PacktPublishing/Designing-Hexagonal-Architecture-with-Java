@@ -50,7 +50,7 @@ public class NetworkManagementAdapter {
     }
 
     @DELETE
-    @Path("/remove/{networkName}/from/{switchId}")
+    @Path("/{networkName}/from/{switchId}")
     @Operation(operationId = "removeNetworkFromSwitch", description = "Remove network from a switch")
     public Uni<Response> removeNetworkFromSwitch(@PathParam("networkName") String networkName, @PathParam("switchId") String switchId) {
         Switch networkSwitch = switchManagementUseCase.retrieveSwitch(Id.withId(switchId));
