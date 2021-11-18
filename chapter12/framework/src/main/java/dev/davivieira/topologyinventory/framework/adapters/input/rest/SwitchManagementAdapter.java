@@ -33,7 +33,7 @@ public class SwitchManagementAdapter {
     RouterManagementUseCase routerManagementUseCase;
 
     @GET
-    @Path("/retrieve/{id}")
+    @Path("/{id}")
     @Operation(operationId = "retrieveSwitch", description = "Retrieve a switch from an edge router")
     public Uni<Response> retrieveSwitch(@PathParam("id") Id switchId) {
         return Uni.createFrom()
@@ -71,7 +71,7 @@ public class SwitchManagementAdapter {
     }
 
     @DELETE
-    @Path("/remove/{switchId}/from/{edgeRouterId}")
+    @Path("/{switchId}/from/{edgeRouterId}")
     @Operation(operationId = "removeSwitch", description = "Retrieve a router from the network inventory")
     public Uni<Response> removeSwitchFromEdgeRouter(
             @PathParam("switchId") String switchId, @PathParam("edgeRouterId") String edgeRouterId) {
