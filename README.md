@@ -1,3 +1,7 @@
+## [Get this title for $10 on Packt's Spring Sale](https://www.packt.com/B17571?utm_source=github&utm_medium=packt-github-repo&utm_campaign=spring_10_dollar_2022)
+-----
+For a limited period, all eBooks and Videos are only $10. All the practical content you need \- by developers, for developers
+
 # Designing Hexagonal Architecture with Java
 
 <a href="https://www.packtpub.com/product/designing-hexagonal-architecture-with-java-and-quarkus/9781801816489?utm_source=github&utm_medium=repository&utm_campaign=9781801816489"><img src="https://static.packt-cdn.com/products/9781801816489/cover/smaller" alt="Designing Hexagonal Architecture with Java" height="256px" align="right"></a>
