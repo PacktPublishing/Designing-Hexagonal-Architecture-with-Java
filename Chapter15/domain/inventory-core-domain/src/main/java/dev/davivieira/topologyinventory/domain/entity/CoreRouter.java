@@ -26,9 +26,16 @@ public class CoreRouter extends Router{
     private Map<Id, Router> routers;
 
     @Builder
-    public CoreRouter(Id id, Id parentRouterId, Vendor vendor, Model model, IP ip, Location location, RouterType routerType, Map<Id, Router> routers) {
+    public CoreRouter(Id id,
+                      Id parentRouterId,
+                      Vendor vendor,
+                      Model model,
+                      IP ip,
+                      Location location,
+                      RouterType routerType,
+                      Map<Id, Router> routers) {
         super(id, parentRouterId, vendor, model, ip, location, routerType);
-        this.routers = routers == null ? new HashMap<Id, Router>() : routers;
+        this.routers = routers == null ? new HashMap<>() : routers;
     }
 
     public CoreRouter addRouter(Router anyRouter) {
@@ -48,13 +55,14 @@ public class CoreRouter extends Router{
         var emptySwitchSpec = new EmptySwitchSpec();
 
         switch (anyRouter.routerType) {
-            case CORE:
-                var coreRouter = (CoreRouter)anyRouter;
+            case CORE -> {
+                var coreRouter = (CoreRouter) anyRouter;
                 emptyRoutersSpec.check(coreRouter);
-                break;
-            case EDGE:
-                var edgeRouter = (EdgeRouter)anyRouter;
+            }
+            case EDGE -> {
+                var edgeRouter = (EdgeRouter) anyRouter;
                 emptySwitchSpec.check(edgeRouter);
+            }
         }
         return this.routers.remove(anyRouter.id);
     }

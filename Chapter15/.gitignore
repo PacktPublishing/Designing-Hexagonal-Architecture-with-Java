@@ -1,0 +1,40 @@
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# OS
+.DS_Store
+
+# Tests
+/coverage
+/.nyc_output
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+*.class
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+*.iml
+target
+**/*.iml
+**/target
+.factorypath
+*.factorypath
+/k8s/local
+.gradle
+!gradle/wrapper/*.jar
+
+# IDE - VSCode
+.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+#Sonarqube

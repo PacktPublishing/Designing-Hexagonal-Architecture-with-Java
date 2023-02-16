@@ -31,7 +31,7 @@ public abstract class Router extends Equipment {
         return p -> p.location.getCountry().equals(location.getCountry());
     }
 
-    public Router(Id id, Id parentRouterId, Vendor vendor, Model model, IP ip, Location location, RouterType routerType) {
+    protected Router(Id id, Id parentRouterId, Vendor vendor, Model model, IP ip, Location location, RouterType routerType) {
         super(id, vendor, model, ip, location);
         this.routerType = routerType;
         this.parentRouterId = parentRouterId;

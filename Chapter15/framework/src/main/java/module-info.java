@@ -15,7 +15,7 @@ module framework {
     requires java.ws.rs;
     requires io.smallrye.mutiny;
     requires java.xml.bind;
-    requires smallrye.common.annotation;
+    requires io.smallrye.common.annotation;
     requires com.fasterxml.jackson.annotation;
     requires microprofile.openapi.api;
     requires quarkus.hibernate.reactive.panache;

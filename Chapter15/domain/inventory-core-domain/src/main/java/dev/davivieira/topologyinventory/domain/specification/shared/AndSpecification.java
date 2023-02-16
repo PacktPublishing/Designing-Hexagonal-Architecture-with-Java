@@ -2,10 +2,10 @@ package dev.davivieira.topologyinventory.domain.specification.shared;
 
 import dev.davivieira.topologyinventory.domain.exception.GenericSpecificationException;
 
-public class AndSpecification<T> extends AbstractSpecification<T> {
+public final class AndSpecification<T> extends AbstractSpecification<T> {
 
-    private Specification<T> spec1;
-    private Specification<T> spec2;
+    private final Specification<T> spec1;
+    private final Specification<T> spec2;
 
     public AndSpecification(final Specification<T> spec1, final Specification<T> spec2) {
         this.spec1 = spec1;
@@ -18,6 +18,8 @@ public class AndSpecification<T> extends AbstractSpecification<T> {
 
     @Override
     public void check(T t) throws GenericSpecificationException {
-
+        if (!isSatisfiedBy(t)) {
+            throw new GenericSpecificationException(t.getClass().getSimpleName() + " is not valid");
+        }
     }
 }

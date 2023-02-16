@@ -17,7 +17,11 @@ public class SwitchManagementMySQLAdapter implements SwitchManagementOutputPort 
 
     @Override
     public Switch retrieveSwitch(Id id) {
-        var switchData = switchManagementRepository.findById(id.getUuid()).subscribe().asCompletionStage().join();
+        var switchData = switchManagementRepository
+                .findById(id.getUuid())
+                .subscribe()
+                .asCompletionStage()
+                .join();
         return RouterH2Mapper.switchDataToDomain(switchData);
     }
 }

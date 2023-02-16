@@ -1,7 +1,6 @@
 package dev.davivieira.topologyinventory.framework.adapters.input.rest.deserializer;
 
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,7 +21,7 @@ public class LocationDeserializer extends StdDeserializer<Location> {
     }
 
     @Override
-    public Location deserialize(JsonParser jsonParser, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+    public Location deserialize(JsonParser jsonParser, DeserializationContext ctxt) throws IOException {
         JsonNode node = jsonParser.getCodec().readTree(jsonParser);
         var address = node.get("address").asText();
         var city = node.get("city").asText();
@@ -48,7 +47,6 @@ public class LocationDeserializer extends StdDeserializer<Location> {
         SimpleModule module = new SimpleModule();
         module.addDeserializer(Location.class, new LocationDeserializer());
         mapper.registerModule(module);
-        Location location = mapper.readValue(jsonNode.toString(), Location.class);
-        return location;
+        return mapper.readValue(jsonNode.toString(), Location.class);
     }
 }

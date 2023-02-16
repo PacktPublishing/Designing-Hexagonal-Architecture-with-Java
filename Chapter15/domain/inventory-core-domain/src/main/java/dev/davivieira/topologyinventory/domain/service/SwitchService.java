@@ -6,18 +6,20 @@ import dev.davivieira.topologyinventory.domain.vo.Id;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
-public class SwitchService {
+public final class SwitchService {
 
+    private SwitchService() {
+        // should not be instantiated
+    }
     public static List<Switch> filterAndRetrieveSwitch(List<Switch> switches, Predicate<Switch> switchPredicate){
         return switches
                 .stream()
                 .filter(switchPredicate)
-                .collect(Collectors.<Switch>toList());
+                .toList();
     }
 
-    public static Switch findById(Map<Id,Switch> switches, Id id){
+    public static Switch findById(Map<Id,Switch> switches, Id id) {
         return switches.get(id);
     }
 }

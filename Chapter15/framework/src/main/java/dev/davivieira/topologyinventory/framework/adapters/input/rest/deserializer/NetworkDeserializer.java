@@ -39,7 +39,6 @@ public class NetworkDeserializer extends StdDeserializer<Network> {
         var module = new SimpleModule();
         module.addDeserializer(Network.class, new NetworkDeserializer());
         mapper.registerModule(module);
-        var network = mapper.readValue(jsonStr, Network.class);
-        return network;
+        return mapper.readValue(jsonStr, Network.class);
     }
 }

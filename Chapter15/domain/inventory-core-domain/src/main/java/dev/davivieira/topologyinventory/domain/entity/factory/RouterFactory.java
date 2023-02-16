@@ -10,8 +10,11 @@ import dev.davivieira.topologyinventory.domain.vo.Model;
 import dev.davivieira.topologyinventory.domain.vo.RouterType;
 import dev.davivieira.topologyinventory.domain.vo.Vendor;
 
-public class RouterFactory {
+public final class RouterFactory {
 
+    private RouterFactory() {
+        // not instantiated
+    }
     public static Router getRouter(Id id,
                                    Vendor vendor,
                                    Model model,
@@ -19,27 +22,23 @@ public class RouterFactory {
                                    Location location,
                                    RouterType routerType){
 
-        switch (routerType){
-            case CORE:
-                return CoreRouter.builder().
-                        id(id==null ? Id.withoutId():id).
-                        vendor(vendor).
-                        model(model).
-                        ip(ip).
-                        location(location).
-                        routerType(routerType).
-                        build();
-            case EDGE:
-                return EdgeRouter.builder().
-                        id(id==null ? Id.withoutId():id).
-                        vendor(vendor).
-                        model(model).
-                        ip(ip).
-                        location(location).
-                        routerType(routerType).
-                        build();
-            default:
-                return null;
-        }
+        return switch (routerType) {
+            case CORE -> CoreRouter.builder().
+                    id(id == null ? Id.withoutId() : id).
+                    vendor(vendor).
+                    model(model).
+                    ip(ip).
+                    location(location).
+                    routerType(routerType).
+                    build();
+            case EDGE -> EdgeRouter.builder().
+                    id(id == null ? Id.withoutId() : id).
+                    vendor(vendor).
+                    model(model).
+                    ip(ip).
+                    location(location).
+                    routerType(routerType).
+                    build();
+        };
     }
 }

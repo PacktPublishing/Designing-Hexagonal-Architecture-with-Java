@@ -33,7 +33,11 @@ import java.util.UUID;
 
 import static dev.davivieira.topologyinventory.domain.vo.Id.withId;
 
-public class RouterH2Mapper {
+public final class RouterH2Mapper {
+
+    private RouterH2Mapper() {
+        // Should not be instantiated
+    }
 
     public static Router routerDataToDomain(RouterData routerData){
         var router = RouterFactory.getRouter(
@@ -43,9 +47,12 @@ public class RouterH2Mapper {
                 IP.fromAddress(routerData.getIp().getAddress()),
                 locationDataToLocation(routerData.getRouterLocation()),
                 RouterType.valueOf(routerData.getRouterType().name()));
-        if(routerData.getRouterParentCoreId()!=null)
-        router.setParentRouterId(Id.withId(routerData.getRouterParentCoreId().toString()));
-        if(routerData.getRouterType().equals(RouterTypeData.CORE)){
+
+        if (routerData.getRouterParentCoreId() != null) {
+            router.setParentRouterId(Id.withId(routerData.getRouterParentCoreId().toString()));
+        }
+
+        if (routerData.getRouterType().equals(RouterTypeData.CORE)) {
             var coreRouter = (CoreRouter) router;
             coreRouter.setRouters(getRoutersFromData(routerData.getRouters()));
             return coreRouter;
@@ -65,9 +72,11 @@ public class RouterH2Mapper {
                 routerLocation(locationDomainToLocationData(router.getLocation())).
                 routerType(RouterTypeData.valueOf(router.getRouterType().toString())).
                 build();
-        if(router.getParentRouterId()!=null)
+
+        if (router.getParentRouterId() != null) {
             routerData.setRouterParentCoreId(router.getParentRouterId().getUuid());
-        if(router.getRouterType().equals(RouterType.CORE)) {
+        }
+        if (router.getRouterType().equals(RouterType.CORE)) {
             var coreRouter = (CoreRouter) router;
             routerData.setRouters(getRoutersFromDomain(coreRouter.getRouters()));
         } else {
@@ -137,9 +146,9 @@ public class RouterH2Mapper {
         return routerMap;
     }
 
-    private static Set<RouterData>  getRoutersFromDomain(Map<Id, Router> routers){
+    private static Set<RouterData> getRoutersFromDomain(Map<Id, Router> routers){
         Set<RouterData> routerDataList = new HashSet<>();
-         routers.values().stream().forEach(router -> {
+         routers.values().forEach(router -> {
              var routerData = routerDomainToData(router);
              routerDataList.add(routerData);
          });
@@ -156,12 +165,10 @@ public class RouterH2Mapper {
         return switchMap;
     }
 
-    private static List<SwitchData>  getSwitchesFromDomain(Map<Id, Switch> switches){
+    private static List<SwitchData> getSwitchesFromDomain(Map<Id, Switch> switches){
         List<SwitchData> switchDataList = new ArrayList<>();
-        if(switches!=null) {
-            switches.values().stream().forEach(aSwitch -> {
-                switchDataList.add(switchDomainToData(aSwitch));
-            });
+        if (switches != null) {
+            switches.values().forEach(aSwitch -> switchDataList.add(switchDomainToData(aSwitch)));
         }
         return switchDataList;
     }
@@ -178,9 +185,9 @@ public class RouterH2Mapper {
         return networks;
     }
 
-    private static Set<NetworkData>  getNetworksFromDomain(List<Network> networks, UUID routerId){
+    private static Set<NetworkData> getNetworksFromDomain(List<Network> networks, UUID routerId){
         Set<NetworkData> networkDataSet = new HashSet<>();
-        if(networks!=null) {
+        if (networks != null) {
             networks.forEach(network -> {
                 var networkData = new NetworkData(
 

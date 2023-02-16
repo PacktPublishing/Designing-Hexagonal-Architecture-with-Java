@@ -19,9 +19,9 @@ import java.util.List;
 import java.util.function.Predicate;
 
 @Getter
-public class Switch extends Equipment {
+public final class Switch extends Equipment {
 
-    private SwitchType switchType;
+    private final SwitchType switchType;
     @Setter
     private List<Network> switchNetworks;
 
@@ -29,7 +29,14 @@ public class Switch extends Equipment {
     private Id routerId;
 
     @Builder
-    public Switch(Id switchId, Id routerId, Vendor vendor, Model model, IP ip, Location location, SwitchType switchType, List<Network> switchNetworks){
+    public Switch(Id switchId,
+                   Id routerId,
+                   Vendor vendor,
+                   Model model,
+                   IP ip,
+                   Location location,
+                   SwitchType switchType,
+                   List<Network> switchNetworks) {
         super(switchId, vendor, model, ip, location);
         this.switchType = switchType;
         this.switchNetworks = switchNetworks;

@@ -61,9 +61,7 @@ public class SwitchDeserializer extends StdDeserializer<Switch> {
     private void fetchChildNetworks(JsonNode switchNetworksNode, Switch networkSwitch) throws IOException {
         List<Network> networks = new ArrayList<>();
         if (switchNetworksNode != null) {
-            var childNetworks = switchNetworksNode.iterator();
-            while (childNetworks.hasNext()) {
-                var childNetwork = childNetworks.next();
+            for (JsonNode childNetwork : switchNetworksNode) {
                 var fetchedNetwork = getNetworkDeserialized(childNetwork.toString());
                 networks.add(fetchedNetwork);
             }
@@ -76,7 +74,6 @@ public class SwitchDeserializer extends StdDeserializer<Switch> {
         var module = new SimpleModule();
         module.addDeserializer(Switch.class, new SwitchDeserializer());
         mapper.registerModule(module);
-        var networkSwitch = mapper.readValue(jsonStr, Switch.class);
-        return networkSwitch;
+        return mapper.readValue(jsonStr, Switch.class);
     }
 }

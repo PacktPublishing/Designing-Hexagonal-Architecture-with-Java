@@ -7,11 +7,11 @@ import dev.davivieira.topologyinventory.domain.specification.shared.AbstractSpec
 import dev.davivieira.topologyinventory.domain.vo.IP;
 import dev.davivieira.topologyinventory.domain.vo.Network;
 
-public class NetworkAvailabilitySpec extends AbstractSpecification<Equipment> {
+public final class NetworkAvailabilitySpec extends AbstractSpecification<Equipment> {
 
-    private IP address;
-    private String name;
-    private int cidr;
+    private final IP address;
+    private final String name;
+    private final int cidr;
 
     public NetworkAvailabilitySpec(Network network){
         this.address = network.getNetworkAddress();
@@ -33,11 +33,12 @@ public class NetworkAvailabilitySpec extends AbstractSpecification<Equipment> {
     private boolean isNetworkAvailable(Equipment switchNetworks){
         var availability = true;
         for (Network network : ((Switch)switchNetworks).getSwitchNetworks()) {
-            if(network.getNetworkAddress().equals(address) &&
+            if (network.getNetworkAddress().equals(address) &&
                     network.getNetworkName().equals(name) &&
-                    network.getNetworkCidr() == cidr)
+                    network.getNetworkCidr() == cidr) {
                 availability = false;
-            break;
+                break;
+            }
         }
         return availability;
     }

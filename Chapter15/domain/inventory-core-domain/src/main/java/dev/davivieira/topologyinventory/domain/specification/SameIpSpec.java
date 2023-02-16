@@ -4,9 +4,9 @@ import dev.davivieira.topologyinventory.domain.entity.Equipment;
 import dev.davivieira.topologyinventory.domain.exception.GenericSpecificationException;
 import dev.davivieira.topologyinventory.domain.specification.shared.AbstractSpecification;
 
-public class SameIpSpec extends AbstractSpecification<Equipment>{
+public final class SameIpSpec extends AbstractSpecification<Equipment>{
 
-    private Equipment equipment;
+    private final Equipment equipment;
 
     public SameIpSpec(Equipment equipment){
         this.equipment = equipment;
@@ -19,7 +19,8 @@ public class SameIpSpec extends AbstractSpecification<Equipment>{
 
     @Override
     public void check(Equipment equipment) {
-        if(!isSatisfiedBy(equipment))
+        if (!isSatisfiedBy(equipment)) {
             throw new GenericSpecificationException("It's not possible to attach routers with the same IP");
+        }
     }
 }
