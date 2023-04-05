@@ -2,7 +2,7 @@ package dev.davivieira.topologyinventory.framework.adapters.output.mysql;
 
 import dev.davivieira.topologyinventory.application.ports.output.RouterManagementOutputPort;
 import dev.davivieira.topologyinventory.domain.entity.Router;
-import dev.davivieira.topologyinventory.domain.vo.Id;
+import dev.davivieira.topologyinventory.domain.valueobject.Id;
 import dev.davivieira.topologyinventory.framework.adapters.output.mysql.mappers.RouterH2Mapper;
 import dev.davivieira.topologyinventory.framework.adapters.output.mysql.repository.RouterManagementRepository;
 

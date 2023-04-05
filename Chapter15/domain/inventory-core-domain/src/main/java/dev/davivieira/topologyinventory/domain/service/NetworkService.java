@@ -1,6 +1,6 @@
 package dev.davivieira.topologyinventory.domain.service;
 
-import dev.davivieira.topologyinventory.domain.vo.Network;
+import dev.davivieira.topologyinventory.domain.valueobject.Network;
 
 import java.util.List;
 import java.util.function.Predicate;

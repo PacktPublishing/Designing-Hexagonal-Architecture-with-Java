@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/ubi-minimal
+FROM redhat/ubi8-minimal:8.7
 ENV APP_FILE_RUNNER bootstrap-1.0-SNAPSHOT-runner
 ENV APP_HOME /work
 EXPOSE 8080

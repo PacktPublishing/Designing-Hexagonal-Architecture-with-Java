@@ -6,8 +6,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import dev.davivieira.topologyinventory.domain.vo.IP;
-import dev.davivieira.topologyinventory.domain.vo.Network;
+import dev.davivieira.topologyinventory.domain.valueobject.IP;
+import dev.davivieira.topologyinventory.domain.valueobject.Network;
 
 import java.io.IOException;
 

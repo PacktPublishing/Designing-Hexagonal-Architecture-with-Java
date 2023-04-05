@@ -2,7 +2,7 @@ package dev.davivieira.topologyinventory.application;
 
 import dev.davivieira.topologyinventory.application.usecases.NetworkManagementUseCase;
 import dev.davivieira.topologyinventory.domain.service.NetworkService;
-import dev.davivieira.topologyinventory.domain.vo.Network;
+import dev.davivieira.topologyinventory.domain.valueobject.Network;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

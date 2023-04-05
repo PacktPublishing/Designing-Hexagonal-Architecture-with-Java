@@ -4,8 +4,8 @@ import dev.davivieira.topologyinventory.domain.entity.Equipment;
 import dev.davivieira.topologyinventory.domain.entity.Switch;
 import dev.davivieira.topologyinventory.domain.exception.GenericSpecificationException;
 import dev.davivieira.topologyinventory.domain.specification.shared.AbstractSpecification;
-import dev.davivieira.topologyinventory.domain.vo.IP;
-import dev.davivieira.topologyinventory.domain.vo.Network;
+import dev.davivieira.topologyinventory.domain.valueobject.IP;
+import dev.davivieira.topologyinventory.domain.valueobject.Network;
 
 public final class NetworkAvailabilitySpec extends AbstractSpecification<Equipment> {
 

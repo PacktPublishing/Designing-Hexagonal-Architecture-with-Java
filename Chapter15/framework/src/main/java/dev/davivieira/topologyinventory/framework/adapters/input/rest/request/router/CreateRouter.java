@@ -2,10 +2,10 @@ package dev.davivieira.topologyinventory.framework.adapters.input.rest.request.r
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import dev.davivieira.topologyinventory.domain.vo.Location;
-import dev.davivieira.topologyinventory.domain.vo.Model;
-import dev.davivieira.topologyinventory.domain.vo.RouterType;
-import dev.davivieira.topologyinventory.domain.vo.Vendor;
+import dev.davivieira.topologyinventory.domain.valueobject.Location;
+import dev.davivieira.topologyinventory.domain.valueobject.Model;
+import dev.davivieira.topologyinventory.domain.valueobject.RouterType;
+import dev.davivieira.topologyinventory.domain.valueobject.Vendor;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

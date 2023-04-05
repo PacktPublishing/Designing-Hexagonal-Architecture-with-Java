@@ -7,12 +7,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import dev.davivieira.topologyinventory.domain.entity.Switch;
-import dev.davivieira.topologyinventory.domain.vo.IP;
-import dev.davivieira.topologyinventory.domain.vo.Id;
-import dev.davivieira.topologyinventory.domain.vo.Model;
-import dev.davivieira.topologyinventory.domain.vo.Network;
-import dev.davivieira.topologyinventory.domain.vo.SwitchType;
-import dev.davivieira.topologyinventory.domain.vo.Vendor;
+import dev.davivieira.topologyinventory.domain.valueobject.IP;
+import dev.davivieira.topologyinventory.domain.valueobject.Id;
+import dev.davivieira.topologyinventory.domain.valueobject.Model;
+import dev.davivieira.topologyinventory.domain.valueobject.Network;
+import dev.davivieira.topologyinventory.domain.valueobject.SwitchType;
+import dev.davivieira.topologyinventory.domain.valueobject.Vendor;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package dev.davivieira.topologyinventory.domain.vo;
+package dev.davivieira.topologyinventory.domain.valueobject;
 
 public enum Vendor {
     CISCO,

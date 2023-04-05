@@ -5,14 +5,14 @@ import dev.davivieira.topologyinventory.domain.entity.EdgeRouter;
 import dev.davivieira.topologyinventory.domain.entity.Router;
 import dev.davivieira.topologyinventory.domain.entity.Switch;
 import dev.davivieira.topologyinventory.domain.entity.factory.RouterFactory;
-import dev.davivieira.topologyinventory.domain.vo.IP;
-import dev.davivieira.topologyinventory.domain.vo.Id;
-import dev.davivieira.topologyinventory.domain.vo.Location;
-import dev.davivieira.topologyinventory.domain.vo.Model;
-import dev.davivieira.topologyinventory.domain.vo.Network;
-import dev.davivieira.topologyinventory.domain.vo.RouterType;
-import dev.davivieira.topologyinventory.domain.vo.SwitchType;
-import dev.davivieira.topologyinventory.domain.vo.Vendor;
+import dev.davivieira.topologyinventory.domain.valueobject.IP;
+import dev.davivieira.topologyinventory.domain.valueobject.Id;
+import dev.davivieira.topologyinventory.domain.valueobject.Location;
+import dev.davivieira.topologyinventory.domain.valueobject.Model;
+import dev.davivieira.topologyinventory.domain.valueobject.Network;
+import dev.davivieira.topologyinventory.domain.valueobject.RouterType;
+import dev.davivieira.topologyinventory.domain.valueobject.SwitchType;
+import dev.davivieira.topologyinventory.domain.valueobject.Vendor;
 import dev.davivieira.topologyinventory.framework.adapters.output.mysql.data.IPData;
 import dev.davivieira.topologyinventory.framework.adapters.output.mysql.data.LocationData;
 import dev.davivieira.topologyinventory.framework.adapters.output.mysql.data.ModelData;
@@ -31,7 +31,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
-import static dev.davivieira.topologyinventory.domain.vo.Id.withId;
+import static dev.davivieira.topologyinventory.domain.valueobject.Id.withId;
 
 public final class RouterH2Mapper {
 

@@ -1,7 +1,7 @@
 package dev.davivieira.topologyinventory.domain.service;
 
 import dev.davivieira.topologyinventory.domain.entity.Switch;
-import dev.davivieira.topologyinventory.domain.vo.Id;
+import dev.davivieira.topologyinventory.domain.valueobject.Id;
 
 import java.util.List;
 import java.util.Map;

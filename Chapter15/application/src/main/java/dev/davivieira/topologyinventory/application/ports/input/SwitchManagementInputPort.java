@@ -4,7 +4,7 @@ import dev.davivieira.topologyinventory.application.ports.output.SwitchManagemen
 import dev.davivieira.topologyinventory.application.usecases.SwitchManagementUseCase;
 import dev.davivieira.topologyinventory.domain.entity.EdgeRouter;
 import dev.davivieira.topologyinventory.domain.entity.Switch;
-import dev.davivieira.topologyinventory.domain.vo.*;
+import dev.davivieira.topologyinventory.domain.valueobject.*;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
