@@ -37,10 +37,8 @@
     <lombok.version>1.18.26</lombok.version>
 
     <!-- Quarkus configuration-->
-    <quarkus-plugin.version>2.16.5.Final</quarkus-plugin.version>
+    <quarkus-plugin.version>2.16.6.Final</quarkus-plugin.version>
     <quarkus.package.type>uber-jar</quarkus.package.type>
-    <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
-    <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
     <quarkus.platform.version>2.16.6.Final</quarkus.platform.version>
   </properties>
 
@@ -48,8 +46,8 @@
     <dependencies>
 	  <!-- BOM used for managing Quarkus ecosystem dependencies -->
       <dependency>
-        <groupId>${quarkus.platform.group-id}</groupId>
-        <artifactId>${quarkus.platform.artifact-id}</artifactId>
+        <groupId>io.quarkus</groupId>
+        <artifactId>quarkus-bom</artifactId>
         <version>${quarkus.platform.version}</version>
         <type>pom</type>
         <scope>import</scope>
@@ -106,83 +104,99 @@
     </dependency>
   </dependencies>
 
-
   <build>
-	<pluginManagement>
-		<plugins>
-		  <!-- Quarkus specific maven plugin to generate code for main and test -->
-		  <plugin>
-			<groupId>io.quarkus</groupId>
-			<artifactId>quarkus-maven-plugin</artifactId>
-			<version>${quarkus-plugin.version}</version>
-			<executions>
-			  <execution>
-				<goals>
-				  <goal>generate-code</goal>
-				  <goal>generate-code-tests</goal>
-				</goals>
-			  </execution>
-			</executions>
-		  </plugin>
-		  
-		  <!-- Jandex enables CDI bean discovery to work across different maven submodules of this project. 
-			   This is essential for using Quarkus in a maven multi-module setup -->
-		  <plugin>
-			<groupId>io.smallrye</groupId>
-			<artifactId>jandex-maven-plugin</artifactId>
-			<version>${jandex-plugin.version}</version>
-			<executions>
-			  <execution>
-				<id>make-index</id>
-				<goals>
-				  <goal>jandex</goal>
-				</goals>
-				<phase>
-				  compile
-				</phase>
-			  </execution>
-			</executions>
-			<configuration>
-			  <fileSets>
-				<fileSet>
-				  <directory>${project.build.directory}/generated-classes/foo</directory>
-				</fileSet>
-				<fileSet>
-				  <directory>${project.build.directory}/generated-classes/bar</directory>
-				</fileSet>
-			  </fileSets>
-			  <jar/>
-			</configuration>
-		  </plugin>
+      <pluginManagement>
+          <plugins>
+              <plugin>
+                  <groupId>io.quarkus</groupId>
+                  <artifactId>quarkus-maven-plugin</artifactId>
+                  <version>${quarkus-plugin.version}</version>
+              </plugin>
+              <plugin>
+                  <groupId>io.smallrye</groupId>
+                  <artifactId>jandex-maven-plugin</artifactId>
+                  <version>${jandex-plugin.version}</version>
+              </plugin>
+              <plugin>
+                  <artifactId>maven-surefire-plugin</artifactId>
+                  <version>${surefire-plugin.version}</version>
+              </plugin>
+              <plugin>
+                  <artifactId>maven-compiler-plugin</artifactId>
+                  <version>${maven.compiler-plugin.version}</version>
+              </plugin>
+          </plugins>
+      </pluginManagement>
 
-		  <plugin>
-			<artifactId>maven-surefire-plugin</artifactId>
-			<version>${surefire-plugin.version}</version>
-			<extensions>true</extensions>
-			<configuration>
-			  <systemPropertyVariables>
-				<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
-			  </systemPropertyVariables>
-			</configuration>
-		  </plugin>
+      <plugins>
+        <!-- Quarkus specific maven plugin to generate code for main and test -->
+        <plugin>
+          <groupId>io.quarkus</groupId>
+          <artifactId>quarkus-maven-plugin</artifactId>
+          <executions>
+            <execution>
+              <goals>
+                <goal>generate-code</goal>
+                <goal>generate-code-tests</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
 
-		  <plugin>
-			<artifactId>maven-compiler-plugin</artifactId>
-			<version>${maven.compiler-plugin.version}</version>
-			<configuration>
-			  <source>${maven.compiler.source}</source>
-			  <target>${maven.compiler.target}</target>
-			  <annotationProcessorPaths>
-				<path>
-				  <groupId>org.projectlombok</groupId>
-				  <artifactId>lombok</artifactId>
-				  <version>${lombok.version}</version>
-				</path>
-			  </annotationProcessorPaths>
-			</configuration>
-		  </plugin>
-		</plugins>
-	</pluginManagement>
+        <!-- Jandex enables CDI bean discovery to work across different maven submodules of this project.
+             This is essential for using Quarkus in a maven multi-module setup -->
+        <plugin>
+          <groupId>io.smallrye</groupId>
+          <artifactId>jandex-maven-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>make-index</id>
+              <goals>
+                <goal>jandex</goal>
+              </goals>
+              <phase>
+                compile
+              </phase>
+            </execution>
+          </executions>
+          <configuration>
+            <fileSets>
+              <fileSet>
+                <directory>${project.build.directory}/generated-classes/foo</directory>
+              </fileSet>
+              <fileSet>
+                <directory>${project.build.directory}/generated-classes/bar</directory>
+              </fileSet>
+            </fileSets>
+            <jar/>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <extensions>true</extensions>
+          <configuration>
+            <systemPropertyVariables>
+              <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+            </systemPropertyVariables>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>${maven.compiler.source}</source>
+            <target>${maven.compiler.target}</target>
+            <annotationProcessorPaths>
+              <path>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+              </path>
+            </annotationProcessorPaths>
+          </configuration>
+        </plugin>
+      </plugins>
   </build>
 
   <profiles>

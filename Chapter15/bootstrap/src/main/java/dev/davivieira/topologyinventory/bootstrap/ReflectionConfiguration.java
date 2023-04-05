@@ -29,5 +29,5 @@ import io.quarkus.runtime.annotations.RegisterForReflection;
         Vendor.class,
 })
 public class ReflectionConfiguration {
-    // Used for registering reflections
+    // Used for registering reflections see https://quarkus.io/guides/writing-native-applications-tips
 }

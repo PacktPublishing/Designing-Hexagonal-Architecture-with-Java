@@ -8,16 +8,21 @@ import dev.davivieira.topologyinventory.domain.service.NetworkService;
 import dev.davivieira.topologyinventory.domain.valueobject.IP;
 import dev.davivieira.topologyinventory.domain.valueobject.Id;
 import dev.davivieira.topologyinventory.domain.valueobject.Network;
+import lombok.NoArgsConstructor;
+
 import java.util.function.Predicate;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 @ApplicationScoped
+@NoArgsConstructor
 public class NetworkManagementInputPort implements NetworkManagementUseCase {
-
+    private RouterManagementOutputPort routerManagementOutputPort;
     @Inject
-    RouterManagementOutputPort routerManagementOutputPort;
+    public NetworkManagementInputPort(RouterManagementOutputPort routerManagementOutputPort) {
+        this.routerManagementOutputPort = routerManagementOutputPort;
+    }
 
     @Override
     public Network createNetwork(
