@@ -21,6 +21,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
+import javax.validation.constraints.NotBlank;
 
 @Produces("application/json")
 @Consumes("application/json")
@@ -38,7 +39,7 @@ public class NetworkManagementAdapter {
     @POST
     @Path("/add/{switchId}")
     @Operation(operationId = "addNetworkToSwitch", description = "Add network to a switch")
-    public Uni<Response> addNetworkToSwitch(AddNetwork addNetwork, @PathParam("switchId") String switchId) {
+    public Uni<Response> addNetworkToSwitch(AddNetwork addNetwork, @PathParam("switchId") @NotBlank String switchId) {
         Switch networkSwitch = switchManagementUseCase.retrieveSwitch(Id.withId(switchId));
 
         Network network = Network.builder()

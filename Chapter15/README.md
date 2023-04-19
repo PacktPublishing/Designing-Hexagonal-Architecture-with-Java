@@ -25,3 +25,11 @@ docker run -p 5555:8080 topology-inventory-native
 ```
 http://localhost:5555/q/swagger-ui/
 ```
+**To start the application from the terminal (without docker)**
+```
+mvn quarkus:dev
+```
+**To access the application (Swagger UI) without docker**
+```
+http://localhost:8080/q/swagger-ui/
+```

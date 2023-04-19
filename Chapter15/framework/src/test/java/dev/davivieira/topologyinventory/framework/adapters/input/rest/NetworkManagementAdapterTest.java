@@ -1,5 +1,6 @@
 package dev.davivieira.topologyinventory.framework.adapters.input.rest;
 
+import dev.davivieira.topologyinventory.domain.valueobject.Network;
 import dev.davivieira.topologyinventory.framework.adapters.input.rest.request.network.AddNetwork;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.MethodOrderer;
@@ -41,7 +42,7 @@ public class NetworkManagementAdapterTest {
         var networks = getSwitchDeserialized(switchStr).getSwitchNetworks();
         var networkExists = networks
                 .stream()
-                .map(network -> network.getNetworkName())
+                .map(Network::getNetworkName)
                 .anyMatch(name -> name.equals(networkName));
 
         assertTrue(networkExists);
@@ -67,7 +68,7 @@ public class NetworkManagementAdapterTest {
         var networks = getSwitchDeserialized(switchStr).getSwitchNetworks();
         var networkExists = networks
                 .stream()
-                .map(network -> network.getNetworkName())
+                .map(Network::getNetworkName)
                 .anyMatch(name -> name.equals(networkName));
 
         assertFalse(networkExists);

@@ -22,6 +22,7 @@ module framework {
     requires java.transaction;
     requires io.vertx.core;
     requires microprofile.context.propagation.api;
+    requires java.validation;
 
     exports dev.davivieira.topologyinventory.framework.adapters.output.mysql.data;
     opens dev.davivieira.topologyinventory.framework.adapters.output.mysql.data;
