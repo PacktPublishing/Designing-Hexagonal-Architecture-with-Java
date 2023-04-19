@@ -1,6 +1,6 @@
 package dev.davivieira.topologyinventory.framework.adapters.input.rest.converter;
 
-import dev.davivieira.topologyinventory.domain.vo.Id;
+import dev.davivieira.topologyinventory.domain.valueobject.Id;
 
 import javax.ws.rs.ext.ParamConverter;
 

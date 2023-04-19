@@ -3,17 +3,17 @@ package dev.davivieira.topologyinventory.application;
 import dev.davivieira.topologyinventory.application.usecases.RouterManagementUseCase;
 import dev.davivieira.topologyinventory.domain.entity.CoreRouter;
 import dev.davivieira.topologyinventory.domain.entity.EdgeRouter;
-import dev.davivieira.topologyinventory.domain.vo.IP;
-import dev.davivieira.topologyinventory.domain.vo.Model;
-import dev.davivieira.topologyinventory.domain.vo.Vendor;
+import dev.davivieira.topologyinventory.domain.valueobject.IP;
+import dev.davivieira.topologyinventory.domain.valueobject.Model;
+import dev.davivieira.topologyinventory.domain.valueobject.Vendor;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
 import javax.inject.Inject;
 
-import static dev.davivieira.topologyinventory.domain.vo.RouterType.CORE;
-import static dev.davivieira.topologyinventory.domain.vo.RouterType.EDGE;
+import static dev.davivieira.topologyinventory.domain.valueobject.RouterType.CORE;
+import static dev.davivieira.topologyinventory.domain.valueobject.RouterType.EDGE;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 

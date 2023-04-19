@@ -2,7 +2,7 @@ package dev.davivieira.topologyinventory.application;
 
 import dev.davivieira.topologyinventory.application.usecases.SwitchManagementUseCase;
 import dev.davivieira.topologyinventory.domain.entity.Switch;
-import dev.davivieira.topologyinventory.domain.vo.*;
+import dev.davivieira.topologyinventory.domain.valueobject.*;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 

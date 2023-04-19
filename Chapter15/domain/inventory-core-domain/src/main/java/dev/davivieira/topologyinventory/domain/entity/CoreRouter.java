@@ -4,12 +4,12 @@ import dev.davivieira.topologyinventory.domain.specification.EmptyRouterSpec;
 import dev.davivieira.topologyinventory.domain.specification.EmptySwitchSpec;
 import dev.davivieira.topologyinventory.domain.specification.SameCountrySpec;
 import dev.davivieira.topologyinventory.domain.specification.SameIpSpec;
-import dev.davivieira.topologyinventory.domain.vo.IP;
-import dev.davivieira.topologyinventory.domain.vo.Id;
-import dev.davivieira.topologyinventory.domain.vo.Location;
-import dev.davivieira.topologyinventory.domain.vo.Model;
-import dev.davivieira.topologyinventory.domain.vo.RouterType;
-import dev.davivieira.topologyinventory.domain.vo.Vendor;
+import dev.davivieira.topologyinventory.domain.valueobject.IP;
+import dev.davivieira.topologyinventory.domain.valueobject.Id;
+import dev.davivieira.topologyinventory.domain.valueobject.Location;
+import dev.davivieira.topologyinventory.domain.valueobject.Model;
+import dev.davivieira.topologyinventory.domain.valueobject.RouterType;
+import dev.davivieira.topologyinventory.domain.valueobject.Vendor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,15 +20,22 @@ import java.util.Map;
 
 @Getter
 @ToString
-public class CoreRouter extends Router{
+public class CoreRouter extends Router {
 
     @Setter
     private Map<Id, Router> routers;
 
     @Builder
-    public CoreRouter(Id id, Id parentRouterId, Vendor vendor, Model model, IP ip, Location location, RouterType routerType, Map<Id, Router> routers) {
+    public CoreRouter(Id id,
+                      Id parentRouterId,
+                      Vendor vendor,
+                      Model model,
+                      IP ip,
+                      Location location,
+                      RouterType routerType,
+                      Map<Id, Router> routers) {
         super(id, parentRouterId, vendor, model, ip, location, routerType);
-        this.routers = routers == null ? new HashMap<Id, Router>() : routers;
+        this.routers = routers == null ? new HashMap<>() : routers;
     }
 
     public CoreRouter addRouter(Router anyRouter) {
@@ -48,13 +55,14 @@ public class CoreRouter extends Router{
         var emptySwitchSpec = new EmptySwitchSpec();
 
         switch (anyRouter.routerType) {
-            case CORE:
-                var coreRouter = (CoreRouter)anyRouter;
+            case CORE -> {
+                var coreRouter = (CoreRouter) anyRouter;
                 emptyRoutersSpec.check(coreRouter);
-                break;
-            case EDGE:
-                var edgeRouter = (EdgeRouter)anyRouter;
+            }
+            case EDGE -> {
+                var edgeRouter = (EdgeRouter) anyRouter;
                 emptySwitchSpec.check(edgeRouter);
+            }
         }
         return this.routers.remove(anyRouter.id);
     }

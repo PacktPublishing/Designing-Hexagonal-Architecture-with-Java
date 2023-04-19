@@ -6,8 +6,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import dev.davivieira.topologyinventory.domain.vo.IP;
-import dev.davivieira.topologyinventory.domain.vo.Network;
+import dev.davivieira.topologyinventory.domain.valueobject.IP;
+import dev.davivieira.topologyinventory.domain.valueobject.Network;
 
 import java.io.IOException;
 
@@ -39,7 +39,6 @@ public class NetworkDeserializer extends StdDeserializer<Network> {
         var module = new SimpleModule();
         module.addDeserializer(Network.class, new NetworkDeserializer());
         mapper.registerModule(module);
-        var network = mapper.readValue(jsonStr, Network.class);
-        return network;
+        return mapper.readValue(jsonStr, Network.class);
     }
 }

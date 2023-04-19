@@ -1,8 +1,8 @@
 package dev.davivieira.topologyinventory.application.usecases;
 
 import dev.davivieira.topologyinventory.domain.entity.Switch;
-import dev.davivieira.topologyinventory.domain.vo.IP;
-import dev.davivieira.topologyinventory.domain.vo.Network;
+import dev.davivieira.topologyinventory.domain.valueobject.IP;
+import dev.davivieira.topologyinventory.domain.valueobject.Network;
 
 public interface NetworkManagementUseCase {
 

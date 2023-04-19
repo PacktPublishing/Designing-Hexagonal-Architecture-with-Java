@@ -1,10 +1,10 @@
 package dev.davivieira.topologyinventory.application;
 
 import dev.davivieira.topologyinventory.application.usecases.SwitchManagementUseCase;
-import dev.davivieira.topologyinventory.domain.vo.IP;
-import dev.davivieira.topologyinventory.domain.vo.Model;
-import dev.davivieira.topologyinventory.domain.vo.SwitchType;
-import dev.davivieira.topologyinventory.domain.vo.Vendor;
+import dev.davivieira.topologyinventory.domain.valueobject.IP;
+import dev.davivieira.topologyinventory.domain.valueobject.Model;
+import dev.davivieira.topologyinventory.domain.valueobject.SwitchType;
+import dev.davivieira.topologyinventory.domain.valueobject.Vendor;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 

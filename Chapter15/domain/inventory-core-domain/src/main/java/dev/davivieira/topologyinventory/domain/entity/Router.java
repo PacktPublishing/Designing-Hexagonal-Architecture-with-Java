@@ -1,11 +1,11 @@
 package dev.davivieira.topologyinventory.domain.entity;
 
-import dev.davivieira.topologyinventory.domain.vo.IP;
-import dev.davivieira.topologyinventory.domain.vo.Id;
-import dev.davivieira.topologyinventory.domain.vo.Location;
-import dev.davivieira.topologyinventory.domain.vo.Model;
-import dev.davivieira.topologyinventory.domain.vo.RouterType;
-import dev.davivieira.topologyinventory.domain.vo.Vendor;
+import dev.davivieira.topologyinventory.domain.valueobject.IP;
+import dev.davivieira.topologyinventory.domain.valueobject.Id;
+import dev.davivieira.topologyinventory.domain.valueobject.Location;
+import dev.davivieira.topologyinventory.domain.valueobject.Model;
+import dev.davivieira.topologyinventory.domain.valueobject.RouterType;
+import dev.davivieira.topologyinventory.domain.valueobject.Vendor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,7 +31,7 @@ public abstract class Router extends Equipment {
         return p -> p.location.getCountry().equals(location.getCountry());
     }
 
-    public Router(Id id, Id parentRouterId, Vendor vendor, Model model, IP ip, Location location, RouterType routerType) {
+    protected Router(Id id, Id parentRouterId, Vendor vendor, Model model, IP ip, Location location, RouterType routerType) {
         super(id, vendor, model, ip, location);
         this.routerType = routerType;
         this.parentRouterId = parentRouterId;

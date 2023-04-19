@@ -3,26 +3,27 @@ package dev.davivieira.topologyinventory.framework.adapters.input.rest;
 import dev.davivieira.topologyinventory.application.usecases.RouterManagementUseCase;
 import dev.davivieira.topologyinventory.domain.entity.CoreRouter;
 import dev.davivieira.topologyinventory.domain.entity.Router;
-import dev.davivieira.topologyinventory.domain.vo.IP;
-import dev.davivieira.topologyinventory.domain.vo.Id;
-import dev.davivieira.topologyinventory.framework.adapters.output.mysql.repository.RouterManagementRepository;
+import dev.davivieira.topologyinventory.domain.valueobject.IP;
+import dev.davivieira.topologyinventory.domain.valueobject.Id;
+import dev.davivieira.topologyinventory.framework.adapters.input.rest.request.router.CreateRouter;
+import io.smallrye.mutiny.Uni;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
-import dev.davivieira.topologyinventory.framework.adapters.input.rest.request.router.CreateRouter;
-import io.smallrye.mutiny.Uni;
-
 import javax.enterprise.context.ApplicationScoped;
-
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
+@Consumes("application/json")
+@Produces("application/json")
 @ApplicationScoped
 @Path("/router")
 @Tag(name = "Router Operations", description = "Router management operations")

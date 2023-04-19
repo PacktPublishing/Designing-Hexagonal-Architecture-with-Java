@@ -7,20 +7,16 @@
     <artifactId>topology-inventory</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
+
   <artifactId>bootstrap</artifactId>
+
   <dependencies>
-    <dependency>
-      <groupId>dev.davivieira</groupId>
-      <artifactId>domain</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>dev.davivieira</groupId>
-      <artifactId>application</artifactId>
-    </dependency>
+
     <dependency>
       <groupId>dev.davivieira</groupId>
       <artifactId>framework</artifactId>
     </dependency>
+
     <dependency>
       <groupId>jakarta.persistence</groupId>
       <artifactId>jakarta.persistence-api</artifactId>
@@ -35,12 +31,12 @@
       <artifactId>quarkus-config-yaml</artifactId>
     </dependency>
   </dependencies>
+
   <build>
     <plugins>
       <plugin>
         <groupId>io.quarkus</groupId>
         <artifactId>quarkus-maven-plugin</artifactId>
-        <version>${quarkus-plugin.version}</version>
         <extensions>true</extensions>
         <executions>
           <execution>

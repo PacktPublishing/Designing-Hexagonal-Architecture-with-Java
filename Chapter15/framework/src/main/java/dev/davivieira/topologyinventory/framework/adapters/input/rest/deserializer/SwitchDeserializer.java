@@ -7,12 +7,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import dev.davivieira.topologyinventory.domain.entity.Switch;
-import dev.davivieira.topologyinventory.domain.vo.IP;
-import dev.davivieira.topologyinventory.domain.vo.Id;
-import dev.davivieira.topologyinventory.domain.vo.Model;
-import dev.davivieira.topologyinventory.domain.vo.Network;
-import dev.davivieira.topologyinventory.domain.vo.SwitchType;
-import dev.davivieira.topologyinventory.domain.vo.Vendor;
+import dev.davivieira.topologyinventory.domain.valueobject.IP;
+import dev.davivieira.topologyinventory.domain.valueobject.Id;
+import dev.davivieira.topologyinventory.domain.valueobject.Model;
+import dev.davivieira.topologyinventory.domain.valueobject.Network;
+import dev.davivieira.topologyinventory.domain.valueobject.SwitchType;
+import dev.davivieira.topologyinventory.domain.valueobject.Vendor;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -61,9 +61,7 @@ public class SwitchDeserializer extends StdDeserializer<Switch> {
     private void fetchChildNetworks(JsonNode switchNetworksNode, Switch networkSwitch) throws IOException {
         List<Network> networks = new ArrayList<>();
         if (switchNetworksNode != null) {
-            var childNetworks = switchNetworksNode.iterator();
-            while (childNetworks.hasNext()) {
-                var childNetwork = childNetworks.next();
+            for (JsonNode childNetwork : switchNetworksNode) {
                 var fetchedNetwork = getNetworkDeserialized(childNetwork.toString());
                 networks.add(fetchedNetwork);
             }
@@ -76,7 +74,6 @@ public class SwitchDeserializer extends StdDeserializer<Switch> {
         var module = new SimpleModule();
         module.addDeserializer(Switch.class, new SwitchDeserializer());
         mapper.registerModule(module);
-        var networkSwitch = mapper.readValue(jsonStr, Switch.class);
-        return networkSwitch;
+        return mapper.readValue(jsonStr, Switch.class);
     }
 }

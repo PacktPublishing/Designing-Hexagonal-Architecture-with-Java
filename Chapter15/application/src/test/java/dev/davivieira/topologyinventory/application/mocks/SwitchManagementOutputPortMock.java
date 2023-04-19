@@ -2,7 +2,7 @@ package dev.davivieira.topologyinventory.application.mocks;
 
 import dev.davivieira.topologyinventory.application.ports.output.SwitchManagementOutputPort;
 import dev.davivieira.topologyinventory.domain.entity.Switch;
-import dev.davivieira.topologyinventory.domain.vo.Id;
+import dev.davivieira.topologyinventory.domain.valueobject.Id;
 import io.quarkus.test.Mock;
 
 @Mock

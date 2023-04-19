@@ -10,8 +10,8 @@ import io.cucumber.java.en.Then;
 
 import javax.inject.Inject;
 
-import static dev.davivieira.topologyinventory.domain.vo.RouterType.CORE;
-import static dev.davivieira.topologyinventory.domain.vo.RouterType.EDGE;
+import static dev.davivieira.topologyinventory.domain.valueobject.RouterType.CORE;
+import static dev.davivieira.topologyinventory.domain.valueobject.RouterType.EDGE;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 

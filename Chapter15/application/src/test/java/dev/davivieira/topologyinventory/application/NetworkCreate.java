@@ -1,7 +1,7 @@
 package dev.davivieira.topologyinventory.application;
 
 import dev.davivieira.topologyinventory.application.usecases.NetworkManagementUseCase;
-import dev.davivieira.topologyinventory.domain.vo.IP;
+import dev.davivieira.topologyinventory.domain.valueobject.IP;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 

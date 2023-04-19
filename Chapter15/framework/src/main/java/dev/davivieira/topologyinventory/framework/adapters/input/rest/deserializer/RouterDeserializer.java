@@ -11,11 +11,11 @@ import dev.davivieira.topologyinventory.domain.entity.EdgeRouter;
 import dev.davivieira.topologyinventory.domain.entity.Router;
 import dev.davivieira.topologyinventory.domain.entity.Switch;
 import dev.davivieira.topologyinventory.domain.entity.factory.RouterFactory;
-import dev.davivieira.topologyinventory.domain.vo.IP;
-import dev.davivieira.topologyinventory.domain.vo.Id;
-import dev.davivieira.topologyinventory.domain.vo.Model;
-import dev.davivieira.topologyinventory.domain.vo.RouterType;
-import dev.davivieira.topologyinventory.domain.vo.Vendor;
+import dev.davivieira.topologyinventory.domain.valueobject.IP;
+import dev.davivieira.topologyinventory.domain.valueobject.Id;
+import dev.davivieira.topologyinventory.domain.valueobject.Model;
+import dev.davivieira.topologyinventory.domain.valueobject.RouterType;
+import dev.davivieira.topologyinventory.domain.valueobject.Vendor;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -64,7 +64,7 @@ public class RouterDeserializer extends StdDeserializer<Router> {
 
     private void fetchChildRouters(RouterType routerType, JsonNode routersNode, Router router) throws IOException {
         Map<Id, Router> routers = new HashMap<>();
-        if (routerType==RouterType.CORE && routers != null) {
+        if (routerType == RouterType.CORE) {
             Iterator<String> childRouters = routersNode.fieldNames();
             while (childRouters.hasNext()) {
                 String childRouter = childRouters.next();
@@ -78,7 +78,7 @@ public class RouterDeserializer extends StdDeserializer<Router> {
 
     private void fetchChildSwitches(RouterType routerType, JsonNode switchesNode, Router router) throws IOException {
         Map<Id, Switch> switches = new HashMap<>();
-        if (routerType==RouterType.EDGE && switches != null) {
+        if (routerType == RouterType.EDGE) {
             var childSwitches = switchesNode.fieldNames();
             while (childSwitches.hasNext()) {
                 var childSwitch = childSwitches.next();
@@ -95,7 +95,6 @@ public class RouterDeserializer extends StdDeserializer<Router> {
         var module = new SimpleModule();
         module.addDeserializer(Router.class, new RouterDeserializer());
         mapper.registerModule(module);
-        var router = mapper.readValue(jsonStr, Router.class);
-        return router;
+        return mapper.readValue(jsonStr, Router.class);
     }
 }

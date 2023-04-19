@@ -4,16 +4,23 @@ import dev.davivieira.topologyinventory.application.ports.output.SwitchManagemen
 import dev.davivieira.topologyinventory.application.usecases.SwitchManagementUseCase;
 import dev.davivieira.topologyinventory.domain.entity.EdgeRouter;
 import dev.davivieira.topologyinventory.domain.entity.Switch;
-import dev.davivieira.topologyinventory.domain.vo.*;
+import dev.davivieira.topologyinventory.domain.valueobject.*;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
 @ApplicationScoped
-public class SwitchManagementInputPort implements SwitchManagementUseCase {
+@NoArgsConstructor
+public final class SwitchManagementInputPort implements SwitchManagementUseCase {
+
+    private SwitchManagementOutputPort switchManagementOutputPort;
 
     @Inject
-    SwitchManagementOutputPort switchManagementOutputPort;
+    SwitchManagementInputPort(SwitchManagementOutputPort switchManagementOutputPort) {
+        this.switchManagementOutputPort = switchManagementOutputPort;
+    }
 
     @Override
     public Switch createSwitch(

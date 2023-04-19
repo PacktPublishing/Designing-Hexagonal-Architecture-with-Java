@@ -8,13 +8,13 @@
     <version>1.0-SNAPSHOT</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
+
   <artifactId>status-sub-domain</artifactId>
 
   <dependencies>
     <dependency>
       <groupId>dev.davivieira</groupId>
       <artifactId>inventory-core-domain</artifactId>
-      <version>1.0-SNAPSHOT</version>
     </dependency>
   </dependencies>
 </project>

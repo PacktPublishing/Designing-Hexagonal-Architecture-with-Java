@@ -1,10 +1,10 @@
 package dev.davivieira.topologyinventory.framework.adapters.input.rest;
 
 import dev.davivieira.topologyinventory.domain.entity.EdgeRouter;
-import dev.davivieira.topologyinventory.domain.vo.Id;
-import dev.davivieira.topologyinventory.domain.vo.Model;
-import dev.davivieira.topologyinventory.domain.vo.SwitchType;
-import dev.davivieira.topologyinventory.domain.vo.Vendor;
+import dev.davivieira.topologyinventory.domain.valueobject.Id;
+import dev.davivieira.topologyinventory.domain.valueobject.Model;
+import dev.davivieira.topologyinventory.domain.valueobject.SwitchType;
+import dev.davivieira.topologyinventory.domain.valueobject.Vendor;
 import dev.davivieira.topologyinventory.framework.adapters.input.rest.request.aswitch.CreateSwitch;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.MethodOrderer;

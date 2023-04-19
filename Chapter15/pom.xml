@@ -6,6 +6,7 @@
   <artifactId>topology-inventory</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
+
   <modules>
     <module>domain</module>
     <module>domain/inventory-core-domain</module>
@@ -14,58 +15,73 @@
     <module>framework</module>
     <module>bootstrap</module>
   </modules>
+
   <properties>
-    <compiler-plugin.version>3.8.1</compiler-plugin.version>
-    <cucumber.version>6.10.4</cucumber.version>
-    <junit-jupiter.version>5.7.2</junit-jupiter.version>
-    <lombok.version>1.18.20</lombok.version>
-    <maven.compiler.source>11</maven.compiler.source>
-    <maven.compiler.target>11</maven.compiler.target>
-    <mockito.version>3.10.0</mockito.version>
-    <quarkus-plugin.version>2.2.1.Final</quarkus-plugin.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+	<!-- Maven compiler settings -->
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <maven.compiler-plugin.version>3.11.0</maven.compiler-plugin.version>
+
+	<!-- Test dependency versions -->
+    <junit-jupiter.version>5.9.2</junit-jupiter.version>
+    <cucumber.version>7.11.2</cucumber.version>
+    <mockito.version>5.2.0</mockito.version>
+    <testcontainers.version>1.17.6</testcontainers.version>
+    <surefire-plugin.version>3.0.0</surefire-plugin.version>
+    <jandex-plugin.version>3.0.5</jandex-plugin.version>
+
+    <!-- 3rd party library versions -->
+    <lombok.version>1.18.26</lombok.version>
+
+    <!-- Quarkus configuration-->
+    <quarkus-plugin.version>2.16.6.Final</quarkus-plugin.version>
     <quarkus.package.type>uber-jar</quarkus.package.type>
-    <quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
-    <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
-    <quarkus.platform.version>2.2.1.Final</quarkus.platform.version>
-    <surefire-plugin.version>2.22.1</surefire-plugin.version>
-    <testcontainers.version>1.15.3</testcontainers.version>
+    <quarkus.platform.version>2.16.6.Final</quarkus.platform.version>
   </properties>
+
   <dependencyManagement>
     <dependencies>
+	  <!-- BOM used for managing Quarkus ecosystem dependencies -->
       <dependency>
-        <groupId>${quarkus.platform.group-id}</groupId>
-        <artifactId>${quarkus.platform.artifact-id}</artifactId>
+        <groupId>io.quarkus</groupId>
+        <artifactId>quarkus-bom</artifactId>
         <version>${quarkus.platform.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+	  
+	  <!-- Internal project dependencies -->
       <dependency>
         <groupId>dev.davivieira</groupId>
         <artifactId>domain</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>dev.davivieira</groupId>
         <artifactId>inventory-core-domain</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>dev.davivieira</groupId>
         <artifactId>status-sub-domain</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>dev.davivieira</groupId>
         <artifactId>application</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>dev.davivieira</groupId>
         <artifactId>framework</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>${project.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
+
   <dependencies>
     <dependency>
       <groupId>org.projectlombok</groupId>
@@ -87,74 +103,102 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
   <build>
-    <plugins>
-      <plugin>
-        <groupId>io.quarkus</groupId>
-        <artifactId>quarkus-maven-plugin</artifactId>
-        <version>${quarkus-plugin.version}</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>generate-code</goal>
-              <goal>generate-code-tests</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.jboss.jandex</groupId>
-        <artifactId>jandex-maven-plugin</artifactId>
-        <version>1.0.7</version>
-        <executions>
-          <execution>
-            <id>make-index</id>
-            <goals>
-              <goal>jandex</goal>
-            </goals>
-            <phase>
-              compile
-            </phase>
-          </execution>
-        </executions>
-        <configuration>
-          <fileSets>
-            <fileSet>
-              <directory>${project.build.directory}/generated-classes/foo</directory>
-            </fileSet>
-            <fileSet>
-              <directory>${project.build.directory}/generated-classes/bar</directory>
-            </fileSet>
-          </fileSets>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.0.0-M5</version>
-        <extensions>true</extensions>
-        <configuration>
-          <systemPropertyVariables>
-            <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
-          </systemPropertyVariables>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
-        <configuration>
-          <source>${maven.compiler.source}</source>
-          <target>${maven.compiler.target}</target>
-          <annotationProcessorPaths>
-            <path>
-              <groupId>org.projectlombok</groupId>
-              <artifactId>lombok</artifactId>
-              <version>1.18.20</version>
-            </path>
-          </annotationProcessorPaths>
-        </configuration>
-      </plugin>
-    </plugins>
+      <pluginManagement>
+          <plugins>
+              <plugin>
+                  <groupId>io.quarkus</groupId>
+                  <artifactId>quarkus-maven-plugin</artifactId>
+                  <version>${quarkus-plugin.version}</version>
+              </plugin>
+              <plugin>
+                  <groupId>io.smallrye</groupId>
+                  <artifactId>jandex-maven-plugin</artifactId>
+                  <version>${jandex-plugin.version}</version>
+              </plugin>
+              <plugin>
+                  <artifactId>maven-surefire-plugin</artifactId>
+                  <version>${surefire-plugin.version}</version>
+              </plugin>
+              <plugin>
+                  <artifactId>maven-compiler-plugin</artifactId>
+                  <version>${maven.compiler-plugin.version}</version>
+              </plugin>
+          </plugins>
+      </pluginManagement>
+
+      <plugins>
+        <!-- Quarkus specific maven plugin to generate code for main and test -->
+        <plugin>
+          <groupId>io.quarkus</groupId>
+          <artifactId>quarkus-maven-plugin</artifactId>
+          <executions>
+            <execution>
+              <goals>
+                <goal>generate-code</goal>
+                <goal>generate-code-tests</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+        <!-- Jandex enables CDI bean discovery to work across different maven submodules of this project.
+             This is essential for using Quarkus in a maven multi-module setup -->
+        <plugin>
+          <groupId>io.smallrye</groupId>
+          <artifactId>jandex-maven-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>make-index</id>
+              <goals>
+                <goal>jandex</goal>
+              </goals>
+              <phase>
+                compile
+              </phase>
+            </execution>
+          </executions>
+          <configuration>
+            <fileSets>
+              <fileSet>
+                <directory>${project.build.directory}/generated-classes/foo</directory>
+              </fileSet>
+              <fileSet>
+                <directory>${project.build.directory}/generated-classes/bar</directory>
+              </fileSet>
+            </fileSets>
+            <jar/>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <extensions>true</extensions>
+          <configuration>
+            <systemPropertyVariables>
+              <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+            </systemPropertyVariables>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>${maven.compiler.source}</source>
+            <target>${maven.compiler.target}</target>
+            <annotationProcessorPaths>
+              <path>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+              </path>
+            </annotationProcessorPaths>
+          </configuration>
+        </plugin>
+      </plugins>
   </build>
+
   <profiles>
     <profile>
       <id>native</id>
@@ -180,8 +224,10 @@
                 </goals>
                 <configuration>
                   <systemPropertyVariables>
-                    <native.image.path>${project.basedir}/bootstrap/target/bootstrap-1.0-SNAPSHOT-runner</native.image.path>
+                    <native.image.path>${project.basedir}/bootstrap/target/bootstrap-${project.version}-runner</native.image.path>
                     <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+                    <!-- for loading maven custom configuration from ${maven.home}/conf/settings.xml. 
+					${maven.home} corresponds to the MAVEN_HOME environment variable read by Quarkus -->
                     <maven.home>${maven.home}</maven.home>
                   </systemPropertyVariables>
                 </configuration>
@@ -192,4 +238,5 @@
       </build>
     </profile>
   </profiles>
+
 </project>

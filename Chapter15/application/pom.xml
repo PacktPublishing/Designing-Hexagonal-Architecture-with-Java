@@ -7,16 +7,20 @@
     <artifactId>topology-inventory</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
+
   <artifactId>application</artifactId>
+
   <dependencies>
+    <!-- internal project dependencies -->
     <dependency>
       <groupId>dev.davivieira</groupId>
       <artifactId>domain</artifactId>
     </dependency>
+    <!-- 3rd party test dependencies-->
     <dependency>
       <groupId>io.quarkiverse.cucumber</groupId>
       <artifactId>quarkus-cucumber</artifactId>
-      <version>0.3.0</version>
+      <version>0.6.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>

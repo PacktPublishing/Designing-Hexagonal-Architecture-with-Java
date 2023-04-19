@@ -2,7 +2,7 @@ package dev.davivieira.topologyinventory.framework.adapters.output.mysql;
 
 import dev.davivieira.topologyinventory.application.ports.output.SwitchManagementOutputPort;
 import dev.davivieira.topologyinventory.domain.entity.Switch;
-import dev.davivieira.topologyinventory.domain.vo.Id;
+import dev.davivieira.topologyinventory.domain.valueobject.Id;
 import dev.davivieira.topologyinventory.framework.adapters.output.mysql.mappers.RouterH2Mapper;
 import dev.davivieira.topologyinventory.framework.adapters.output.mysql.repository.SwitchManagementRepository;
 
@@ -17,7 +17,11 @@ public class SwitchManagementMySQLAdapter implements SwitchManagementOutputPort 
 
     @Override
     public Switch retrieveSwitch(Id id) {
-        var switchData = switchManagementRepository.findById(id.getUuid()).subscribe().asCompletionStage().join();
+        var switchData = switchManagementRepository
+                .findById(id.getUuid())
+                .subscribe()
+                .asCompletionStage()
+                .join();
         return RouterH2Mapper.switchDataToDomain(switchData);
     }
 }

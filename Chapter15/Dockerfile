@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11:x86_64-alpine-jre11u-nightly
+FROM eclipse-temurin:17.0.6_10-jre-alpine
 ENV APP_FILE_RUNNER bootstrap-1.0-SNAPSHOT-runner.jar
 ENV APP_HOME /usr/apps
 EXPOSE 8080

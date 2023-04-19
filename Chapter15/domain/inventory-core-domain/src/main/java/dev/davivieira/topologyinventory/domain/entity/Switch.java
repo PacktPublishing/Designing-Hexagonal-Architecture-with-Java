@@ -3,14 +3,14 @@ package dev.davivieira.topologyinventory.domain.entity;
 import dev.davivieira.topologyinventory.domain.specification.CIDRSpecification;
 import dev.davivieira.topologyinventory.domain.specification.NetworkAmountSpec;
 import dev.davivieira.topologyinventory.domain.specification.NetworkAvailabilitySpec;
-import dev.davivieira.topologyinventory.domain.vo.IP;
-import dev.davivieira.topologyinventory.domain.vo.Id;
-import dev.davivieira.topologyinventory.domain.vo.Location;
-import dev.davivieira.topologyinventory.domain.vo.Model;
-import dev.davivieira.topologyinventory.domain.vo.Network;
-import dev.davivieira.topologyinventory.domain.vo.Protocol;
-import dev.davivieira.topologyinventory.domain.vo.SwitchType;
-import dev.davivieira.topologyinventory.domain.vo.Vendor;
+import dev.davivieira.topologyinventory.domain.valueobject.IP;
+import dev.davivieira.topologyinventory.domain.valueobject.Id;
+import dev.davivieira.topologyinventory.domain.valueobject.Location;
+import dev.davivieira.topologyinventory.domain.valueobject.Model;
+import dev.davivieira.topologyinventory.domain.valueobject.Network;
+import dev.davivieira.topologyinventory.domain.valueobject.Protocol;
+import dev.davivieira.topologyinventory.domain.valueobject.SwitchType;
+import dev.davivieira.topologyinventory.domain.valueobject.Vendor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,9 +19,9 @@ import java.util.List;
 import java.util.function.Predicate;
 
 @Getter
-public class Switch extends Equipment {
+public final class Switch extends Equipment {
 
-    private SwitchType switchType;
+    private final SwitchType switchType;
     @Setter
     private List<Network> switchNetworks;
 
@@ -29,7 +29,14 @@ public class Switch extends Equipment {
     private Id routerId;
 
     @Builder
-    public Switch(Id switchId, Id routerId, Vendor vendor, Model model, IP ip, Location location, SwitchType switchType, List<Network> switchNetworks){
+    public Switch(Id switchId,
+                   Id routerId,
+                   Vendor vendor,
+                   Model model,
+                   IP ip,
+                   Location location,
+                   SwitchType switchType,
+                   List<Network> switchNetworks) {
         super(switchId, vendor, model, ip, location);
         this.switchType = switchType;
         this.switchNetworks = switchNetworks;
